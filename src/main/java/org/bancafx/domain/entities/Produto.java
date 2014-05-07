@@ -41,9 +41,4 @@ public class Produto implements Serializable {
 
     @OneToOne
     private GeneroProduto genero;
-
-
-
-
-
 }
