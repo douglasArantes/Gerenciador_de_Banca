@@ -1,7 +1,6 @@
 <h1>Gerenciador de Banca</h1>
 
-<p>Projeto da Disciplina Análise e Projeto de Software Orientado a Objetos,</ br>
-do curso Análise de Sistemas, da FACOM-UFMS</p>
+<p>Projeto da Disciplina Análise e Projeto de Software Orientado a Objetos, do curso Análise de Sistemas, da FACOM-UFMS</p>
 
 <h3>Tecnologias utilizadas:</h3>
 <ul>
