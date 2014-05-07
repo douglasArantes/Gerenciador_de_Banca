@@ -41,4 +41,13 @@ public class Produto implements Serializable {
 
     @OneToOne
     private GeneroProduto genero;
+
+    public void baixarEstoque(Integer quantidade) throws Exception {
+        if(quantidadeEmEstoque <=quantidade){
+            quantidadeEmEstoque -= quantidade;
+        }
+        else {
+            throw new Exception("Quantidade pedida, não está disponível em estoque");
+        }
+    }
 }
