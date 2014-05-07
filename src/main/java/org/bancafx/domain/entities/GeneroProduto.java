@@ -11,9 +11,13 @@ import java.io.Serializable;
  */
 
 @Entity
+@NamedQuery(name = GeneroProduto.TODOS_GENEROS, query = "select gp from GeneroProduto gp")
 @Data
 @EqualsAndHashCode @ToString
 public class GeneroProduto implements Serializable{
+
+    public static final String TODOS_GENEROS = "GeneroProduto.listarTodos";
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

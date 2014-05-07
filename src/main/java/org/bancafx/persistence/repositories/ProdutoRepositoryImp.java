@@ -6,6 +6,7 @@ import org.bancafx.utils.jpa.JPAUtil;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Douglas on 06/05/2014.
@@ -55,6 +56,14 @@ public class ProdutoRepositoryImp implements ProdutoRespository, Serializable{
     @Override
     public void baixarEstoque(Produto p, Integer qtd) {
         //TODO implementar
+    }
+
+    @Override
+    public List<Produto> buscarTodos() {
+        List<Produto> produtos;
+        return produtos = JPAUtil.getEntityManager()
+                .createNamedQuery(Produto.TODOS_PRODUTOS, Produto.class)
+                .getResultList();
     }
 
 }

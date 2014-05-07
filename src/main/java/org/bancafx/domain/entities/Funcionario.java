@@ -14,9 +14,12 @@ import java.time.LocalDate;
  */
 
 @Entity
+@NamedQuery(name = Funcionario.TODOS_FUNCIONARIOS, query = "select f from Funcionario f")
 @Data
 @EqualsAndHashCode @ToString
 public class Funcionario implements Serializable{
+
+    public static final String TODOS_FUNCIONARIOS = "Funcionario.listarTodos";
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(AccessLevel.NONE)

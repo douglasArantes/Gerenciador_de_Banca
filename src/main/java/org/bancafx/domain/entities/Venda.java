@@ -14,9 +14,12 @@ import java.util.List;
  */
 
 @Entity
+@NamedQuery(name = Venda.TODAS_VENDAS, query = "select v from Venda v")
 @Data
 @EqualsAndHashCode @ToString
 public class Venda implements Serializable{
+
+    public static final String TODAS_VENDAS = "Venda.listarTodas";
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(AccessLevel.NONE)
