@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Douglas on 07/05/2014.
  */
-public interface ProdutoRespository {
+public interface ProdutoRepository {
 
     void salvar(Produto p);
     void excluir(Produto p);

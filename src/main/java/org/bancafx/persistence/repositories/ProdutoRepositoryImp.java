@@ -3,7 +3,6 @@ package org.bancafx.persistence.repositories;
 import org.bancafx.domain.entities.Produto;
 import org.bancafx.utils.jpa.JPAUtil;
 
-import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 /**
  * Created by Douglas on 06/05/2014.
  */
-public class ProdutoRepositoryImp implements ProdutoRespository, Serializable{
+public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
 
     public void salvar(Produto p){
         JPAUtil.getEntityManager().getTransaction().begin();
