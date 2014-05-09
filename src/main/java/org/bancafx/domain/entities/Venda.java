@@ -56,4 +56,16 @@ public class Venda implements Serializable{
     public void adicionarItem(ItemVenda item){
         itens.add(item);
     }
+
+    public void adicionarItens(List<ItemVenda> itens){
+        itens.addAll(itens);
+    }
+
+    public void removerItem(ItemVenda item){
+        this.itens.remove(item);
+    }
+
+    public void removerTodosItens(){
+        itens.clear();
+    }
 }

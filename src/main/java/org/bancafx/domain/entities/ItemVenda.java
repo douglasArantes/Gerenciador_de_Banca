@@ -1,7 +1,6 @@
 package org.bancafx.domain.entities;
 
-import lombok.AccessLevel;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +11,8 @@ import java.math.BigDecimal;
  */
 
 @Entity
+@Data
+@EqualsAndHashCode @ToString
 public class ItemVenda implements Serializable{
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
