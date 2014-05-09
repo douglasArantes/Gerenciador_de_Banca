@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class Venda implements Serializable{
     private Funcionario funcionario;
 
     public Venda(){
+        itens = new ArrayList<>();
         momentoDaVenda.now();
     }
 
@@ -49,5 +51,9 @@ public class Venda implements Serializable{
             valorTotal = valorTotal.add(iv.getTotal());
         }
         return valorTotal;
+    }
+
+    public void adicionarItem(ItemVenda item){
+        itens.add(item);
     }
 }

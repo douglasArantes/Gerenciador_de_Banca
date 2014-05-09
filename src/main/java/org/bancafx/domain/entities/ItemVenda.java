@@ -24,13 +24,19 @@ public class ItemVenda implements Serializable{
 
     private Integer quantidade;
 
+    private BigDecimal valor;
+
     @ManyToOne
     @JoinColumn(name = "venda_id", nullable = false)
     private Venda venda;
+
+
+    public ItemVenda(){
+        this.valor = produto.getPrecoDeVenda();
+    }
 
     public BigDecimal getTotal(){
         BigDecimal qtd = new BigDecimal(quantidade);
         return  produto.getPrecoDeVenda().multiply(qtd);
     }
-
 }
