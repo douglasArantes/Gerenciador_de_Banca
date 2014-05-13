@@ -24,8 +24,8 @@ public class Funcionario implements Serializable{
 
     public static final String TODOS_FUNCIONARIOS = "Funcionario.listarTodos";
 
-    @Id  @NotNull
-    @Column(unique = true)
+    @Id
+    @Column(name = "cpf")
     @org.hibernate.validator.constraints.br.CPF
     private String Cpf;
 
@@ -48,12 +48,15 @@ public class Funcionario implements Serializable{
     private Endereco endereco;
 
     @Convert(converter = LocalDatePersistenceConverter.class)
+    @Column(name = "data_de_adimissao")
     private LocalDate adimissao;
 
     @Convert(converter = LocalDatePersistenceConverter.class)
+    @Column(name = "data_de_demissao")
     private LocalDate demissao;
 
     @Convert(converter = LocalDatePersistenceConverter.class)
+    @Column(name = "data_de_nascimento")
     private LocalDate nascimento;
 
     @Column(unique = true)

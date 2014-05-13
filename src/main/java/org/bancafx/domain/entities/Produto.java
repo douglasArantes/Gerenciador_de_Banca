@@ -20,7 +20,7 @@ public class Produto implements Serializable {
 
     public static final String TODOS_PRODUTOS = "Produto.listarTodos";
 
-    @Id @NotNull
+    @Id
     private String codigo;
 
     @NotNull
@@ -30,12 +30,15 @@ public class Produto implements Serializable {
     private String descricao;
 
     @NotNull
+    @Column(name = "preco_de_custo")
     private BigDecimal precoDeCusto;
 
     @NotNull
+    @Column(name = "preco_de_venda")
     private BigDecimal precoDeVenda;
 
     @NotNull @Min(value = 0)
+    @Column(name = "quantidade_em_estoque")
     private Integer quantidadeEmEstoque;
 
     @OneToOne

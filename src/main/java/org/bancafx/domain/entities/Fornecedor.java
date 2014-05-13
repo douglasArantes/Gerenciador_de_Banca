@@ -19,8 +19,8 @@ public class Fornecedor implements Serializable {
 
     public static final String TODOS_FORNECEDORES = "Fornecedor.listarTodos";
 
-    @Id @NotNull
-    @Column(unique = true)
+    @Id
+    @Column(name = "cnpj", unique = true)
     private String Cnpj;
 
     @Embedded
@@ -31,9 +31,11 @@ public class Fornecedor implements Serializable {
     private String email;
 
     @Convert(converter = TelefonePersistenceConverter.class)
+    @Column(name = "tel_fixo")
     private Telefone fixo;
 
     @Convert(converter = TelefonePersistenceConverter.class)
+    @Column(name = "tel_celular")
     private Telefone celular;
 
     @OneToOne

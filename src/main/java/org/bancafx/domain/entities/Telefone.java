@@ -10,7 +10,6 @@ import java.io.Serializable;
  * Created by Douglas on 09/04/2014.
  */
 
-//@Embeddable
 @EqualsAndHashCode @ToString
 public class Telefone implements Serializable {
 

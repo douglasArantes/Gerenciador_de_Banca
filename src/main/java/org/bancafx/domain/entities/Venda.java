@@ -28,6 +28,7 @@ public class Venda implements Serializable{
 
     @Convert(converter = LocalDateTimePersistenceConverter.class)
     @Setter(AccessLevel.NONE)
+    @Column(name = "momento_da_venda")
     private LocalDateTime momentoDaVenda;
 
     @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -35,6 +36,7 @@ public class Venda implements Serializable{
     private List<ItemVenda> itens;
 
     @Setter(AccessLevel.NONE)
+    @Column(name = "total_da_venda")
     private BigDecimal totalDaVenda;
 
     @ManyToOne
@@ -58,7 +60,7 @@ public class Venda implements Serializable{
     }
 
     public void adicionarItens(List<ItemVenda> itens){
-        itens.addAll(itens);
+        this.itens.addAll(itens);
     }
 
     public void removerItem(ItemVenda item){

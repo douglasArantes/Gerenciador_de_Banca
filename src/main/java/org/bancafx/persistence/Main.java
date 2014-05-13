@@ -18,9 +18,11 @@ public class Main {
 
     public static void main(String[] args) {
 /*
+        GeneroProduto gp = new GeneroProduto();
+        gp.setGenero("Revista de Tecnologia");
+        gp.setDescricao("Artigos técnicos, Tutoriais, etc");
         GeneroProdutoRepository gpr = new GeneroProdutoRepositoryImp();
-        GeneroProduto gp = gpr.buscarPorId(1);
-
+        gpr.salvar(gp);
 
         Produto p = new Produto();
         p.setCodigo("OJM-3-5/2014");
