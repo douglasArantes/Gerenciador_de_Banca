@@ -46,6 +46,9 @@ public class Compra implements Serializable{
     @Setter(AccessLevel.NONE)
     private BigDecimal totalDaCompra;
 
+    @ManyToOne
+    private Fornecedor fornecedor;
+
     @Setter(AccessLevel.NONE)
     @Getter(AccessLevel.NONE)
     private Boolean entregePeloFornecedor;
