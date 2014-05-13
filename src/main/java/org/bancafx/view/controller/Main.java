@@ -12,7 +12,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by Douglas on 13/05/2014.
@@ -36,7 +35,7 @@ public class Main  extends Application{
 
         Tab venda = new Tab("VENDAS");
 
-        Parent painelVenda = FXMLLoader.load(getClass().getResource("/org/bancafx/view/fxml/cadastro_produto.fxml"));
+        Parent painelVenda = FXMLLoader.load(getClass().getResource("/fxml/venda.fxml"));
         AnchorPane anchorVenda = new AnchorPane();
         anchorVenda.getChildren().add(painelVenda);
         venda.setContent(anchorVenda);
@@ -46,15 +45,13 @@ public class Main  extends Application{
 
         Tab estoque = new Tab("ESTOQUE");
 
-        Parent painelEstoque = FXMLLoader.load(getClass().getResource("/org/bancafx/view/produtos.fxml"));
+        Parent painelEstoque = FXMLLoader.load(getClass().getResource("/fxml/produtos.fxml"));
         AnchorPane anchorEstoque = new AnchorPane();
         anchorEstoque.getChildren().add(painelEstoque);
         estoque.setContent(anchorEstoque);
 
 
         Tab relatorio = new Tab("RELATÓRIOS");
-
-
 
 
         tabs.getTabs().addAll(venda, pedido, estoque, relatorio);

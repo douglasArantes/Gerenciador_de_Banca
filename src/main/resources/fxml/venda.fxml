@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPaneVendas" prefHeight="709.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox layoutX="15.0" layoutY="26.0">
+            <children>
+                <Label fx:id="labelCodigo" layoutX="15.0" layoutY="26.0" text="Código">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+
+                    <HBox.margin>
+                        <Insets left="8.0" />
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="fieldCodigo" layoutX="68.0" layoutY="26.0" prefHeight="25.0" prefWidth="231.0" promptText="Digite o Código do Produto">
+
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </TextField><Button fx:id="buttonPesquisar" layoutX="341.0208435058594" layoutY="26.0" mnemonicParsing="false" text="Pesquisar">
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin></Button>
+            </children>
+        </HBox>
+        <TableView fx:id="tableVendas" cache="true" depthTest="ENABLE" layoutX="9.0" layoutY="64.0" pickOnBounds="false" prefHeight="532.0" prefWidth="882.0" tableMenuButtonVisible="true">
+            <columns>
+                <TableColumn fx:id="columnCodigo" maxWidth="150.0" minWidth="30.0" prefWidth="96.66666412353516" text="Código" />
+                <TableColumn fx:id="columnNome" maxWidth="417.0" minWidth="100.0" prefWidth="417.0" resizable="false" text="Nome" />
+                <TableColumn fx:id="columnPreco" maxWidth="195.66668701171875" minWidth="75.0" prefWidth="120.0" text="Preço" />
+                <TableColumn fx:id="columnQtdVenda" minWidth="74.33331298828125" prefWidth="102.0" text="Qtd. Venda" />
+                <TableColumn fx:id="columnTotal" prefWidth="144.0" text="Total" />
+            </columns>
+
+        </TableView>
+        <Text fx:id="textInfoVenda" layoutX="933.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFORMAÇÕES DA VENDA" underline="true">
+            <effect>
+                <Reflection fraction="0.74" />
+            </effect>
+            <font>
+                <Font name="Arial" size="24.0" />
+            </font>
+        </Text>
+        <ImageView fx:id="imgCarrinho" fitHeight="69.0" fitWidth="115.0" layoutX="1250.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+            <effect>
+                <Reflection fraction="0.64" />
+            </effect>
+            <image>
+                <Image url="@../../../../../resources/images/shopping_cart.png" />
+            </image>
+        </ImageView>
+        <HBox layoutX="943.0" layoutY="164.0">
+            <children>
+                <Label fx:id="labelTotalVenda" layoutX="648.0048828125" layoutY="104.5" text="TOTAL DA VENDA R$">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="fieldTotalVenda" editable="false" layoutX="732.056640625" layoutY="100.5">
+                    <HBox.margin>
+                        <Insets left="25.0" />
+                    </HBox.margin>
+                </TextField>
+            </children>
+
+        </HBox>
+        <HBox layoutX="954.0" layoutY="211.0">
+            <children>
+                <Label fx:id="labelValorRecebido" layoutX="658.009765625" layoutY="142.5" text="VALOR RECEBIDO R$">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="fieldValorRecebido" layoutX="706.0" layoutY="140.0">
+                    <HBox.margin>
+                        <Insets left="25.0" />
+                    </HBox.margin>
+                </TextField>
+            </children>
+        </HBox>
+        <HBox layoutX="955.0" layoutY="263.0">
+            <children>
+                <Label fx:id="labelTroco" layoutX="654.0146484375" layoutY="191.5" text="TROCO R$">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="fieldTroco" editable="false" layoutX="730.0" layoutY="188.0">
+                    <HBox.margin>
+                        <Insets left="85.0" />
+                    </HBox.margin>
+                </TextField>
+            </children>
+        </HBox>
+        <HBox layoutX="964.1875" layoutY="332.5">
+            <children>
+                <Button fx:id="buttonConfirmar" defaultButton="true" layoutX="694.1875" layoutY="332.5" mnemonicParsing="false" text="CONFIRMAR" textFill="#0d0d0d" />
+                <Button fx:id="buttonCancelar" cancelButton="true" layoutX="805.0" layoutY="333.0" mnemonicParsing="false" text="CANCELAR" textFill="#0d0d0d">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
