@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="800.0" prefWidth="1200.0"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+    <children><TableView fx:id="tableProdutos" editable="true" layoutX="14.0" layoutY="72.0" prefHeight="691.0" prefWidth="681.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="72.0">
+        <columns>
+            <TableColumn fx:id="columnCodigo" prefWidth="75.0" text="Código" />
+            <TableColumn fx:id="columnNome" prefWidth="171.3333282470703" text="Nome" /><TableColumn fx:id="columnGenero" prefWidth="102.66667175292969" text="Gênero" /><TableColumn fx:id="columnPCusto" prefWidth="111.0" text="Preço de Custo" /><TableColumn fx:id="columnPVenda" prefWidth="106.33334350585938" text="Preço de Venda" /><TableColumn fx:id="columnQuantidade" prefWidth="105.0" text="Quantidade" />
+        </columns>
+    </TableView>
+        <HBox layoutX="32.67155075073242" layoutY="20.0" prefHeight="25.0" prefWidth="392.0" spacing="10.0" AnchorPane.leftAnchor="15.0">
+            <children><Label fx:id="labelPesquisar" layoutX="32.67155075073242" layoutY="22.83333396911621" text="Pesquisar">
+                <HBox.margin>
+                    <Insets />
+                </HBox.margin></Label><TextField fx:id="fieldPesquisar" layoutX="106.0" layoutY="20.0" prefHeight="25.0" prefWidth="328.0" />
+            </children>
+        </HBox>
+        <HBox layoutX="714.1875" layoutY="18.833332061767578" spacing="15.0" AnchorPane.rightAnchor="50.0">
+            <children><Button fx:id="btnNovo" layoutX="724.1875" layoutY="18.833332061767578" mnemonicParsing="false" text="Novo" /><Button fx:id="btnEditar" layoutX="841.5208282470703" layoutY="18.833332061767578" mnemonicParsing="false" text="Editar" /><Button fx:id="btnExcluir" layoutX="936.1875" layoutY="18.833332061767578" mnemonicParsing="false" text="Excluir" />
+            </children>
+        </HBox>
+        <VBox layoutX="722.0" layoutY="69.0" spacing="20.0" AnchorPane.rightAnchor="20.0">
+            <children>
+                <HBox>
+                    <children><ImageView fitHeight="64.0" fitWidth="62.0" layoutX="695.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../images/produto.png" />
+                        </image></ImageView><Text fill="#6f6e6e" layoutX="757.0" layoutY="114.8984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Detalhes do Produto" underline="true">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                        <HBox.margin>
+                            <Insets top="20.0" />
+                        </HBox.margin></Text>
+                    </children>
+                </HBox><HBox layoutX="692.0048828125" layoutY="172.0" spacing="60.0">
+                <children>
+                    <Label fx:id="labelNome" layoutX="12.0048828125" layoutY="124.83332824707031" text="Nome" />
+                    <TextField fx:id="fieldNome" editable="false" layoutX="110.0" layoutY="122.0" prefHeight="25.0" prefWidth="319.0" />
+                </children>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+            </HBox><HBox layoutX="692.0" layoutY="211.0">
+                <children>
+                    <Label fx:id="labelPCusto" layoutX="12.0" layoutY="164.0" text="Preço de Custo">
+                        <padding>
+                            <Insets right="10.0" />
+                        </padding>
+                    </Label>
+                    <TextField fx:id="fieldPCusto" editable="false" layoutX="108.0" layoutY="161.0" prefHeight="25.0" prefWidth="103.0" />
+                    <Label fx:id="labelPVenda" layoutX="232.0" layoutY="164.0" text="Preço de Venda">
+                        <padding>
+                            <Insets left="15.0" right="10.0" />
+                        </padding>
+                    </Label>
+                    <TextField fx:id="fieldPVenda" editable="false" layoutX="328.0" layoutY="161.0" prefHeight="25.0" prefWidth="110.0" />
+                </children>
+            </HBox><HBox layoutX="692.0" layoutY="270.0" prefHeight="25.0" prefWidth="412.0">
+                <children>
+                    <Label fx:id="labelQuantidade" layoutX="12.0048828125" layoutY="223.5" text="Quantidade">
+                        <padding>
+                            <Insets right="28.0" />
+                        </padding>
+                    </Label>
+                    <TextField fx:id="fieldQuantidade" editable="false" layoutX="101.0" layoutY="220.0" prefHeight="25.0" prefWidth="103.0" />
+                    <Label fx:id="labelGenero" layoutX="222.0048828125" layoutY="223.5" text="Gênero">
+                        <padding>
+                            <Insets left="16.0" right="10.0" />
+                        </padding>
+                    </Label><TextField fx:id="fieldGenero" />
+                </children>
+            </HBox>
+                <VBox layoutX="694.0" layoutY="318.5">
+                    <children>
+                        <Label fx:id="labelObs" layoutX="694.0" layoutY="318.5" text="Observações">
+                            <padding>
+                                <Insets bottom="10.0" />
+                            </padding>
+                        </Label>
+                        <TextArea fx:id="tAreaObs" editable="false" layoutX="694.0" layoutY="346.0" prefHeight="124.0" prefWidth="416.0">
+                            <VBox.margin>
+                                <Insets right="50.0" />
+                            </VBox.margin>
+                        </TextArea>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children></AnchorPane>
