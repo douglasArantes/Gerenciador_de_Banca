@@ -28,7 +28,7 @@ public class FuncionarioRepositoryImp implements FuncionarioRepository, Serializ
 
         JPAUtil.getEntityManager()
                 .remove(JPAUtil.getEntityManager()
-                        .getReference(Funcionario.class, f.getId()));
+                        .getReference(Funcionario.class, f.getCpf()));
 
         JPAUtil.getEntityManager().getTransaction().commit();
         JPAUtil.closeEntityManager();

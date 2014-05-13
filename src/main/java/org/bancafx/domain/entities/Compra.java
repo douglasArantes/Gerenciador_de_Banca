@@ -19,7 +19,6 @@ import java.util.List;
 
 @Entity
 @NamedQuery(name = Compra.TODAS_COMPRAS, query = "select c from Compra c")
-
 @Data
 @EqualsAndHashCode @ToString
 public class Compra implements Serializable{

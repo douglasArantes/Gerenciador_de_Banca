@@ -1,8 +1,11 @@
 package org.bancafx.domain.entities;
 
 import lombok.*;
+import org.bancafx.utils.jpa.converters.TelefonePersistenceConverter;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -16,28 +19,24 @@ public class Fornecedor implements Serializable {
 
     public static final String TODOS_FORNECEDORES = "Fornecedor.listarTodos";
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.NONE)
-    private Long id;
+    @Id @NotNull
+    @Column(unique = true)
+    private String Cnpj;
 
     @Embedded
     private Nome nome;
 
     @Column(unique = true)
+    @Email
     private String email;
 
-    @OneToOne
+    @Convert(converter = TelefonePersistenceConverter.class)
     private Telefone fixo;
 
-   @OneToOne
-   private Telefone celular;
+    @Convert(converter = TelefonePersistenceConverter.class)
+    private Telefone celular;
 
     @OneToOne
+    @Basic(fetch = FetchType.LAZY)
     private Endereco endereco;
-
-    @Embedded @Column(unique = true)
-    private CNPJ cnpj;
-
-
-
 }

@@ -1,8 +1,6 @@
 package org.bancafx.persistence.repositories;
 
-import org.bancafx.domain.entities.CNPJ;
 import org.bancafx.domain.entities.Fornecedor;
-import org.bancafx.domain.entities.Funcionario;
 import org.bancafx.utils.jpa.JPAUtil;
 
 import java.io.Serializable;
@@ -28,7 +26,7 @@ public class FornecedorRepositoryImp implements FornecedorRepository, Serializab
 
         JPAUtil.getEntityManager()
                 .remove(JPAUtil.getEntityManager()
-                        .getReference(Fornecedor.class, f.getId()));
+                        .getReference(Fornecedor.class, f.getCnpj()));
 
         JPAUtil.getEntityManager().getTransaction().commit();
         JPAUtil.closeEntityManager();
@@ -45,7 +43,7 @@ public class FornecedorRepositoryImp implements FornecedorRepository, Serializab
     }
 
     @Override
-    public Fornecedor buscarPorCNPJ(CNPJ cnpj) {
+    public Fornecedor buscarPorCnpj(String cnpj) {
         //TODO implementar
         return null;
     }

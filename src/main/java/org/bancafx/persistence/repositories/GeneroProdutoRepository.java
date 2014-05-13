@@ -13,5 +13,6 @@ public interface GeneroProdutoRepository {
     void salvar(GeneroProduto gp);
     void excluir(GeneroProduto gp );
     void editar(GeneroProduto gp);
+    GeneroProduto buscarPorId(Integer id);
     List<GeneroProduto> buscarTodos();
 }

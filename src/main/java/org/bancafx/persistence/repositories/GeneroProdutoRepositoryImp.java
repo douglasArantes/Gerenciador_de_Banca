@@ -47,6 +47,11 @@ public class GeneroProdutoRepositoryImp implements GeneroProdutoRepository, Seri
     }
 
     @Override
+    public GeneroProduto buscarPorId(Integer id) {
+        return JPAUtil.getEntityManager().find(GeneroProduto.class, id);
+    }
+
+    @Override
     public List<GeneroProduto> buscarTodos() {
         List<GeneroProduto> generoProdutos;
 

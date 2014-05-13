@@ -25,9 +25,15 @@ public class ItemCompra implements Serializable {
 
     private Integer quantidade;
 
+    private BigDecimal valor;
+
     @ManyToOne
     @JoinColumn(name = "compra_id", nullable = false)
     private Compra compra;
+
+    public ItemCompra(){
+        valor = new BigDecimal("0.0");
+    }
 
     public BigDecimal getTotal(){
             BigDecimal qtd = new BigDecimal(quantidade);

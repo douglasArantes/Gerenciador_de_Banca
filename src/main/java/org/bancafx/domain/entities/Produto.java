@@ -3,6 +3,7 @@ package org.bancafx.domain.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,7 +13,6 @@ import java.math.BigDecimal;
  */
 
 @Entity
-@Table(name = "produto")
 @NamedQuery(name = Produto.TODOS_PRODUTOS, query = "select p from Produto p")
 @Data
 @EqualsAndHashCode @ToString
@@ -20,10 +20,8 @@ public class Produto implements Serializable {
 
     public static final String TODOS_PRODUTOS = "Produto.listarTodos";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.NONE)
-    private Long codigo;
+    @Id @NotNull
+    private String codigo;
 
     @NotNull
     private String nome;
@@ -37,6 +35,7 @@ public class Produto implements Serializable {
     @NotNull
     private BigDecimal precoDeVenda;
 
+    @NotNull @Min(value = 0)
     private Integer quantidadeEmEstoque;
 
     @OneToOne

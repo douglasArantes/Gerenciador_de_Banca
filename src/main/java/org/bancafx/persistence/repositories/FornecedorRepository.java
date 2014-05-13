@@ -1,6 +1,5 @@
 package org.bancafx.persistence.repositories;
 
-import org.bancafx.domain.entities.CNPJ;
 import org.bancafx.domain.entities.Fornecedor;
 
 import java.util.List;
@@ -13,6 +12,6 @@ public interface FornecedorRepository {
     void salvar(Fornecedor f);
     void excluir(Fornecedor f);
     void editar(Fornecedor f);
-    Fornecedor buscarPorCNPJ(CNPJ cnpj);
+    Fornecedor buscarPorCnpj(String Cnpj);
     List<Fornecedor> buscarTodos();
 }

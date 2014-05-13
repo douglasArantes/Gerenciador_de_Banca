@@ -2,6 +2,9 @@ package org.bancafx.domain.entities;
 
 import lombok.*;
 import org.bancafx.utils.jpa.converters.LocalDatePersistenceConverter;
+import org.bancafx.utils.jpa.converters.TelefonePersistenceConverter;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.br.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -21,20 +24,27 @@ public class Funcionario implements Serializable{
 
     public static final String TODOS_FUNCIONARIOS = "Funcionario.listarTodos";
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.NONE)
-    private Integer id;
+    @Id  @NotNull
+    @Column(unique = true)
+    @org.hibernate.validator.constraints.br.CPF
+    private String Cpf;
 
     @Embedded @NotNull
     private Nome nome;
 
     @Column(unique = true)
+    @NotNull
+    private String rg;
+
+    @Column(unique = true)
+    @Email
     private String email;
 
-    @OneToOne
+    @Convert(converter = TelefonePersistenceConverter.class)
     private Telefone telefone;
 
     @OneToOne
+    @Basic(fetch = FetchType.LAZY)
     private Endereco endereco;
 
     @Convert(converter = LocalDatePersistenceConverter.class)
@@ -53,12 +63,4 @@ public class Funcionario implements Serializable{
     @Min(value = 6)
     @NotNull
     private String senha;
-
-    @Column(unique = true)
-    @NotNull
-    private CPF cpf;
-
-    @Column(unique = true)
-    @NotNull
-    private RG rg;
 }

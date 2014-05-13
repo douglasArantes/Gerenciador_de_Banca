@@ -31,9 +31,8 @@ public class ItemVenda implements Serializable{
     @JoinColumn(name = "venda_id", nullable = false)
     private Venda venda;
 
-
     public ItemVenda(){
-        this.valor = produto.getPrecoDeVenda();
+        valor = new BigDecimal("0.0");
     }
 
     public BigDecimal getTotal(){
