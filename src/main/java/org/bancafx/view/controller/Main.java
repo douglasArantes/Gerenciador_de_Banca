@@ -2,6 +2,7 @@ package org.bancafx.view.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -12,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Douglas on 13/05/2014.
@@ -22,51 +24,66 @@ public class Main  extends Application{
     public void start(Stage stage) throws IOException {
 
         BorderPane root = new BorderPane();
-        Scene scene = new Scene(root, 1200, 600);
+        root.setTop(getTop());
+        root.setCenter(getCenter());
 
-        Label titulo = new Label("Sistema Gerenciador de Banca");
-        titulo.setMinSize(30, 30);
-        root.setTop(titulo);
-        root.setLeft(null);
-
-
-        TabPane tabs = new TabPane();
-        root.setCenter(tabs);
-
-        Tab venda = new Tab("VENDAS");
-
-        Parent painelVenda = FXMLLoader.load(getClass().getResource("/fxml/venda.fxml"));
-        AnchorPane anchorVenda = new AnchorPane();
-        anchorVenda.getChildren().add(painelVenda);
-        venda.setContent(anchorVenda);
-
-
-        Tab pedido = new Tab("PEDIDOS");
-
-        Tab estoque = new Tab("ESTOQUE");
-
-        Parent painelEstoque = FXMLLoader.load(getClass().getResource("/fxml/produtos.fxml"));
-        AnchorPane anchorEstoque = new AnchorPane();
-        anchorEstoque.getChildren().add(painelEstoque);
-        estoque.setContent(anchorEstoque);
-
-
-        Tab relatorio = new Tab("RELATÓRIOS");
-
-
-        tabs.getTabs().addAll(venda, pedido, estoque, relatorio);
-
-        desabilitarFecharTabs(venda, pedido, estoque, relatorio);
-
+        Scene scene = new Scene(root, 1200, 900);
         stage.setScene(scene);
         stage.show();
 
     }
 
-    private static void desabilitarFecharTabs(Tab ... tabs){
-        for(Tab t : tabs){
-            t.setClosable(false);
-        }
+    private Node getCenter() throws IOException {
+        return getTabPane();
+    }
+
+    private Node getTop(){
+        Label titulo = new Label("Sistema Gerenciador de Banca");
+        titulo.setMinSize(30, 30);
+        return titulo;
+    }
+
+    private TabPane getTabPane() throws IOException {
+        TabPane tabs = new TabPane();
+        Tab venda = getTabVenda();
+        Tab pedido = getTabPedido();
+        Tab estoque = getTabEstoque();
+        Tab relatorio = getTabRelatorio();
+
+        tabs.getTabs().addAll(venda, pedido, estoque, relatorio);
+        desabilitarFecharTabs(tabs);
+
+        return tabs;
+    }
+
+    private Tab getTabPedido() {
+        return new Tab("PEDIDOS");
+    }
+
+    private Tab getTabRelatorio() {
+        return new Tab("RELATÓRIOS");
+    }
+
+    private Tab getTabEstoque() throws IOException {
+        Tab estoque = new Tab("ESTOQUE");
+        Parent painelEstoque = FXMLLoader.load(getClass().getResource("/fxml/produtos.fxml"));
+        AnchorPane anchorEstoque = new AnchorPane();
+        anchorEstoque.getChildren().add(painelEstoque);
+        estoque.setContent(anchorEstoque);
+        return estoque;
+    }
+
+    private Tab getTabVenda() throws IOException {
+        Tab venda = new Tab("VENDAS");
+        Parent painelVenda = FXMLLoader.load(getClass().getResource("/fxml/venda.fxml"));
+        AnchorPane anchorVenda = new AnchorPane();
+        anchorVenda.getChildren().add(painelVenda);
+        venda.setContent(anchorVenda);
+        return venda;
+    }
+
+    private void desabilitarFecharTabs(TabPane tabPane){
+        tabPane.getTabs().forEach((t) -> t.setClosable(false));
     }
 
     public static void main(String[] args) {

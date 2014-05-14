@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
@@ -7,14 +7,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="800.0" prefWidth="1200.0"
-            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="709.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
-    <children><TableView fx:id="tableProdutos" editable="true" layoutX="14.0" layoutY="72.0" prefHeight="691.0" prefWidth="681.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="72.0">
+    <children><TableView fx:id="tableProdutos" editable="true" layoutX="14.0" layoutY="62.0" prefHeight="570.0" prefWidth="839.0" tableMenuButtonVisible="true">
         <columns>
             <TableColumn fx:id="columnCodigo" prefWidth="75.0" text="Código" />
-            <TableColumn fx:id="columnNome" prefWidth="171.3333282470703" text="Nome" /><TableColumn fx:id="columnGenero" prefWidth="102.66667175292969" text="Gênero" /><TableColumn fx:id="columnPCusto" prefWidth="111.0" text="Preço de Custo" /><TableColumn fx:id="columnPVenda" prefWidth="106.33334350585938" text="Preço de Venda" /><TableColumn fx:id="columnQuantidade" prefWidth="105.0" text="Quantidade" />
+            <TableColumn fx:id="columnNome" prefWidth="268.0" text="Nome" /><TableColumn fx:id="columnGenero" prefWidth="163.0" text="Gênero" /><TableColumn fx:id="columnPCusto" prefWidth="105.0" text="Preço de Custo" /><TableColumn fx:id="columnPVenda" prefWidth="95.0" text="Preço de Venda" /><TableColumn fx:id="columnQuantidade" prefWidth="132.0" text="Quantidade" />
         </columns>
     </TableView>
         <HBox layoutX="32.67155075073242" layoutY="20.0" prefHeight="25.0" prefWidth="392.0" spacing="10.0" AnchorPane.leftAnchor="15.0">
@@ -28,7 +26,7 @@
             <children><Button fx:id="btnNovo" layoutX="724.1875" layoutY="18.833332061767578" mnemonicParsing="false" text="Novo" /><Button fx:id="btnEditar" layoutX="841.5208282470703" layoutY="18.833332061767578" mnemonicParsing="false" text="Editar" /><Button fx:id="btnExcluir" layoutX="936.1875" layoutY="18.833332061767578" mnemonicParsing="false" text="Excluir" />
             </children>
         </HBox>
-        <VBox layoutX="722.0" layoutY="69.0" spacing="20.0" AnchorPane.rightAnchor="20.0">
+        <VBox layoutX="894.0" layoutY="69.0" prefHeight="368.0" prefWidth="438.0" spacing="20.0">
             <children>
                 <HBox>
                     <children><ImageView fitHeight="64.0" fitWidth="62.0" layoutX="695.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
@@ -89,7 +87,7 @@
                         </Label>
                         <TextArea fx:id="tAreaObs" editable="false" layoutX="694.0" layoutY="346.0" prefHeight="124.0" prefWidth="416.0">
                             <VBox.margin>
-                                <Insets right="50.0" />
+                                <Insets right="25.0" />
                             </VBox.margin>
                         </TextArea>
                     </children>

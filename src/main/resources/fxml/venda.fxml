@@ -32,7 +32,7 @@
                 </HBox.margin></Button>
             </children>
         </HBox>
-        <TableView fx:id="tableVendas" cache="true" depthTest="ENABLE" layoutX="9.0" layoutY="64.0" pickOnBounds="false" prefHeight="532.0" prefWidth="882.0" tableMenuButtonVisible="true">
+        <TableView fx:id="tableVendas" cache="true" depthTest="ENABLE" layoutX="9.0" layoutY="64.0" pickOnBounds="false" prefHeight="570.0" prefWidth="882.0" tableMenuButtonVisible="true">
             <columns>
                 <TableColumn fx:id="columnCodigo" maxWidth="150.0" minWidth="30.0" prefWidth="96.66666412353516" text="Código" />
                 <TableColumn fx:id="columnNome" maxWidth="417.0" minWidth="100.0" prefWidth="417.0" resizable="false" text="Nome" />
@@ -55,7 +55,7 @@
                 <Reflection fraction="0.64" />
             </effect>
             <image>
-                <Image url="@../../../../../resources/images/shopping_cart.png" />
+                <Image url="@../images/shopping_cart.png" />
             </image>
         </ImageView>
         <HBox layoutX="943.0" layoutY="164.0">
