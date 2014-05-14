@@ -30,7 +30,6 @@ public class Main  extends Application{
         Scene scene = new Scene(root, 1200, 900);
         stage.setScene(scene);
         stage.show();
-
     }
 
     private Node getCenter() throws IOException {
