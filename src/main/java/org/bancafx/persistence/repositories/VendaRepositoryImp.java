@@ -29,7 +29,7 @@ public class VendaRepositoryImp implements VendaRepository, Serializable {
 
         JPAUtil.getEntityManager()
                 .remove(JPAUtil.getEntityManager()
-                        .getReference(Venda.class, v.getId()));
+                .getReference(Venda.class, v.getId()));
 
         JPAUtil.getEntityManager().getTransaction().commit();
         JPAUtil.closeEntityManager();

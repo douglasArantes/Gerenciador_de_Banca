@@ -18,7 +18,7 @@
                                 <Image url="@../images/produto.png" />
                             </image>
                         </ImageView>
-                        <Label contentDisplay="BOTTOM" layoutX="103.0" layoutY="17.0" prefHeight="68.0" prefWidth="330.0" text="Cadastro de Produto" textFill="#807f7f" underline="true">
+                        <Label contentDisplay="BOTTOM" layoutX="103.0" layoutY="17.0" prefHeight="68.0" prefWidth="330.0" text="Edição de Produto" textFill="#807f7f" underline="true">
                             <font>
                                 <Font size="36.0" />
                             </font>
@@ -80,9 +80,9 @@
                         </TextArea>
                     </children>
                 </VBox>
-            <HBox>
+            <HBox prefHeight="15.0" prefWidth="468.0">
                <children>
-                      <Button fx:id="buttonCadastrar" layoutX="14.1875" layoutY="475.5" mnemonicParsing="false" text="Cadastrar">
+                      <Button fx:id="buttonCadastrar" layoutX="14.1875" layoutY="475.5" mnemonicParsing="false" text="Atualizar">
                      <HBox.margin>
                         <Insets right="25.0" />
                      </HBox.margin>

@@ -22,7 +22,6 @@ public class Main  extends Application{
 
     @Override
     public void start(Stage stage) throws IOException {
-
         BorderPane root = new BorderPane();
         root.setTop(getTop());
         root.setCenter(getCenter());
@@ -42,7 +41,7 @@ public class Main  extends Application{
         return titulo;
     }
 
-    private TabPane getTabPane() throws IOException {
+    private TabPane getTabPane(){
         TabPane tabs = new TabPane();
         Tab venda = getTabVenda();
         Tab pedido = getTabPedido();
@@ -63,18 +62,18 @@ public class Main  extends Application{
         return new Tab("RELATÓRIOS");
     }
 
-    private Tab getTabEstoque() throws IOException {
+    private Tab getTabEstoque(){
         Tab estoque = new Tab("ESTOQUE");
-        Parent painelEstoque = FXMLLoader.load(getClass().getResource("/fxml/produtos.fxml"));
+        Parent painelEstoque = loadFxml("produtos.fxml");
         AnchorPane anchorEstoque = new AnchorPane();
         anchorEstoque.getChildren().add(painelEstoque);
         estoque.setContent(anchorEstoque);
         return estoque;
     }
 
-    private Tab getTabVenda() throws IOException {
+    private Tab getTabVenda(){
         Tab venda = new Tab("VENDAS");
-        Parent painelVenda = FXMLLoader.load(getClass().getResource("/fxml/venda.fxml"));
+        Parent painelVenda = loadFxml("venda.fxml");
         AnchorPane anchorVenda = new AnchorPane();
         anchorVenda.getChildren().add(painelVenda);
         venda.setContent(anchorVenda);
@@ -83,6 +82,16 @@ public class Main  extends Application{
 
     private void desabilitarFecharTabs(TabPane tabPane){
         tabPane.getTabs().forEach((t) -> t.setClosable(false));
+    }
+
+    private Parent loadFxml(String file){
+        try {
+            return (Parent) FXMLLoader.load(getClass().getResource("/fxml/" + file));
+        } catch (IOException e) {
+            System.err.println("");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void main(String[] args) {
