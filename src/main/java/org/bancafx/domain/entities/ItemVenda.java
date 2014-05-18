@@ -39,4 +39,11 @@ public class ItemVenda implements Serializable{
         BigDecimal qtd = new BigDecimal(quantidade);
         return  produto.getPrecoDeVenda().multiply(qtd);
     }
+
+    public ItemVenda(Produto p, Integer qtd, BigDecimal val, Venda ven){
+        this.produto = p;
+        this.quantidade = qtd;
+        this.valor = val;
+        this.venda = ven;
+    }
 }

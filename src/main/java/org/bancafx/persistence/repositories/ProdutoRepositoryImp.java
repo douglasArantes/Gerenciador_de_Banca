@@ -42,7 +42,7 @@ public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
     }
 
     @Override
-    public Produto buscarPorCodigo(Long codigo) {
+    public Produto buscarPorCodigo(String codigo) {
         String jpql = "FROM Produto p WHERE p.codigo = :codigo";
 
         TypedQuery<Produto> query = JPAUtil.getEntityManager()
@@ -64,5 +64,4 @@ public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
                 .createNamedQuery(Produto.TODOS_PRODUTOS, Produto.class)
                 .getResultList();
     }
-
 }

@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Douglas on 13/05/2014.
  */
-public class ProdutosController implements Initializable, IProdutosController {
+public class ProdutosController implements Initializable, IProdutosController{
 
     @FXML
     private TableView<Produto> tableProdutos;
@@ -41,40 +41,40 @@ public class ProdutosController implements Initializable, IProdutosController {
     @FXML
     private TextField fieldPesquisar;
 
+
     @Override
     public void novoProduto(){
-        Parent painel = loadFxml("cadastro_produto.fxml");
-        AnchorPane anchorNovoProduto = new AnchorPane();
-        anchorNovoProduto.getChildren().add(painel);
+        FXMLLoader loader = getLoader("cadastro_produto.fxml");
+        AnchorPane pane = loadAnchorPane(loader);
+
+        Scene scene = new Scene(pane);
         Stage stage = new Stage();
+        stage.setScene(scene);
         stage.setTitle("Novo Produto");
         stage.initModality(Modality.APPLICATION_MODAL);
-        Scene scene = new Scene(anchorNovoProduto);
-        stage.setScene(scene);
-        stage.show();
-    }
 
-    private Parent loadFxml(String file){
-        try {
-            return (Parent) FXMLLoader.load(getClass().getResource("/fxml/" + file));
-        } catch (IOException e) {
-            System.err.println("");
-            e.printStackTrace();
-        }
-        return null;
+        CadastroProdutoController controller = loader.getController();
+        controller.setStage(stage);
+        stage.showAndWait();
     }
 
     @Override
     public void editarProduto(){
-        Parent painel = loadFxml("editar_produto.fxml");
-        AnchorPane anchorNovoProduto = new AnchorPane();
-        anchorNovoProduto.getChildren().add(painel);
+        FXMLLoader loader = getLoader("editar_produto.fxml");
+        AnchorPane pane = loadAnchorPane(loader);
+
+        Scene scene = new Scene(pane);
         Stage stage = new Stage();
-        stage.setTitle("Editar Produto");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        Scene scene = new Scene(anchorNovoProduto);
         stage.setScene(scene);
-        stage.show();
+        stage.setTitle("Edição de Produto");
+        stage.initModality(Modality.WINDOW_MODAL);
+
+        EditarProdutoControlller controlller = loader.getController();
+        controlller.setStage(stage);
+        stage.showAndWait();
+
+        /**/
+
     }
     @Override
     public boolean excluirProduto(){
@@ -90,5 +90,17 @@ public class ProdutosController implements Initializable, IProdutosController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    private FXMLLoader getLoader(String file) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + file));
+        return loader;
+    }
+    private AnchorPane loadAnchorPane(FXMLLoader loader) {
+        try {
+            return (AnchorPane) loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

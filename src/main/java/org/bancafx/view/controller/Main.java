@@ -48,7 +48,7 @@ public class Main  extends Application{
         Tab estoque = getTabEstoque();
         Tab relatorio = getTabRelatorio();
 
-        tabs.getTabs().addAll(venda, pedido, estoque, relatorio);
+        tabs.getTabs().addAll(venda, estoque, pedido, relatorio);
         desabilitarFecharTabs(tabs);
 
         return tabs;

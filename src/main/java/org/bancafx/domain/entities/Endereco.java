@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 
 @Entity
-@Data @AllArgsConstructor
+@Data
 @NoArgsConstructor
 @EqualsAndHashCode @ToString
 public class Endereco implements Serializable {
@@ -29,5 +29,14 @@ public class Endereco implements Serializable {
     private String cidade;
 
     private String uf;
+
+    public Endereco(String log, Integer num, String bairro, String cep, String cid, String uf){
+        this.logradouro = log;
+        this.numero = num;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.cidade = cid;
+        this.uf = uf;
+    }
 
 }

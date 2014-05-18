@@ -48,7 +48,7 @@ public class Venda implements Serializable{
     }
 
     public BigDecimal getTotalDaVenda(){
-        BigDecimal valorTotal = new BigDecimal(0);
+        BigDecimal valorTotal = new BigDecimal("0.0");
         for (ItemVenda iv : itens){
             valorTotal = valorTotal.add(iv.getTotal());
         }

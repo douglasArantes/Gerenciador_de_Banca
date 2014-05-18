@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @NamedQuery(name = Fornecedor.TODOS_FORNECEDORES, query = "select f from Fornecedor f")
-@Data
+@Data @AllArgsConstructor
 @EqualsAndHashCode @ToString
 public class Fornecedor implements Serializable {
 
