@@ -1,5 +1,6 @@
 package org.bancafx.view.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,7 +42,6 @@ public class ProdutosController implements Initializable, IProdutosController{
     @FXML
     private TextField fieldPesquisar;
 
-
     @Override
     public void novoProduto(){
         FXMLLoader loader = getLoader("cadastro_produto.fxml");
@@ -72,14 +72,11 @@ public class ProdutosController implements Initializable, IProdutosController{
         EditarProdutoControlller controlller = loader.getController();
         controlller.setStage(stage);
         stage.showAndWait();
-
-        /**/
-
     }
+
     @Override
-    public boolean excluirProduto(){
+    public void excluirProduto(){
         System.out.println("Cliquei no Botão Excluir!");
-        return false;
     }
     @Override
     public List<Produto> buscarProdutos() {
@@ -103,4 +100,5 @@ public class ProdutosController implements Initializable, IProdutosController{
             throw new RuntimeException(e);
         }
     }
+
 }

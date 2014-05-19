@@ -11,6 +11,6 @@ import java.util.List;
 public interface IProdutosController {
     void novoProduto() throws IOException;
     void editarProduto();
-    boolean excluirProduto();
+    void excluirProduto();
     List<Produto> buscarProdutos();
 }
