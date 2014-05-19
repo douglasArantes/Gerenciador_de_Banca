@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @Entity
 @NamedQuery(name = GeneroProduto.TODOS_GENEROS, query = "select gp from GeneroProduto gp")
-@Data @AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 @EqualsAndHashCode @ToString
 public class GeneroProduto implements Serializable{
 
