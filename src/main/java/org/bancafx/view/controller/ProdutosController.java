@@ -1,19 +1,19 @@
 package org.bancafx.view.controller;
 
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.bancafx.domain.entities.GeneroProduto;
 import org.bancafx.domain.entities.Produto;
+import org.bancafx.persistence.repositories.ProdutoRepository;
+import org.bancafx.persistence.repositories.ProdutoRepositoryImp;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -26,21 +26,28 @@ import java.util.ResourceBundle;
  */
 public class ProdutosController implements Initializable, IProdutosController{
 
-    @FXML
-    private TableView<Produto> tableProdutos;
-    @FXML
-    private TableColumn<Produto, String> columnNome;
-    @FXML
-    private TableColumn<Produto, GeneroProduto> columnGenero;
-    @FXML
-    private TableColumn<Produto, BigDecimal> columnPCusto;
-    @FXML
-    private TableColumn<Produto, BigDecimal> columnPVenda;
-    @FXML
-    private TableColumn<Produto, Integer> columnQuantidade;
+    @FXML private TableView<Produto> tableProdutos;
+    @FXML private TableColumn<Produto, String> columnCodigo;
+    @FXML private TableColumn<Produto, String> columnNome;
+    @FXML private TableColumn<Produto, BigDecimal> columnPCusto;
+    @FXML private TableColumn<Produto, BigDecimal> columnPVenda;
+    @FXML private TableColumn<Produto, Integer> columnQuantidade;
 
-    @FXML
-    private TextField fieldPesquisar;
+    @FXML private TextField fieldCodigo;
+    @FXML private TextField fieldNome;
+    @FXML private TextField fieldPCusto;
+    @FXML private TextField fieldPVenda;
+    @FXML private TextField fieldQuantidade;
+    @FXML private TextField fieldGenero;
+    @FXML private TextArea tAreaObs;
+
+    @FXML private TextField fieldPesquisar;
+
+    private ObservableList<Produto> produtos;
+
+    public ProdutosController(){
+        produtos = FXCollections.observableArrayList();
+    }
 
     @Override
     public void novoProduto(){
@@ -56,6 +63,7 @@ public class ProdutosController implements Initializable, IProdutosController{
         CadastroProdutoController controller = loader.getController();
         controller.setStage(stage);
         stage.showAndWait();
+        atualizaTabela();
     }
 
     @Override
@@ -76,8 +84,29 @@ public class ProdutosController implements Initializable, IProdutosController{
 
     @Override
     public void excluirProduto(){
-        System.out.println("Cliquei no Botão Excluir!");
+        ProdutoRepository pr = new ProdutoRepositoryImp();
+        ObservableList<Produto> produtosSelecionados=  tableProdutos.getSelectionModel().getSelectedItems();
+        produtosSelecionados.forEach( p -> pr.excluir(p));
+        mostraDetalhesProduto(null);
+        atualizaTabela();
     }
+
+    private void mostraDetalhesProduto(Produto produto){
+        if(produto != null){
+            fieldCodigo.setText(produto.getCodigo());
+            fieldNome.setText(produto.getNome());
+            fieldPCusto.setText(produto.getPrecoDeCusto().toString());
+            fieldPVenda.setText(produto.getPrecoDeVenda().toString());
+            fieldQuantidade.setText(produto.getQuantidadeEmEstoque().toString());
+            fieldGenero.setText(produto.getGenero().getGenero());
+            tAreaObs.setText(produto.getDescricao());
+        } else{
+            limpaCampos(fieldCodigo, fieldNome, fieldPCusto, fieldPVenda, fieldQuantidade, fieldGenero, tAreaObs);
+        }
+
+    }
+
+
     @Override
     public List<Produto> buscarProdutos() {
         System.out.println("Pressionei: " + fieldPesquisar.getText());
@@ -86,9 +115,42 @@ public class ProdutosController implements Initializable, IProdutosController{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        preparaTabela();
+        atualizaTabela();
+
+        tableProdutos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        tableProdutos.getSelectionModel().selectedItemProperty()
+                .addListener((observableValue, produto, selectedProd) -> {
+                    mostraDetalhesProduto(selectedProd);
+                });
 
     }
 
+    private void preparaTabela() {
+        columnCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        columnPCusto.setCellValueFactory(new PropertyValueFactory<>("precoDeCusto"));
+        columnPVenda.setCellValueFactory(new PropertyValueFactory<>("precoDeVenda"));
+        columnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidadeEmEstoque"));
+    }
+
+    public void atualizaTabela(){
+        produtos.clear();
+        produtos.addAll(getProdutos());
+        tableProdutos.getItems().setAll(produtos);
+    }
+
+    private void limpaCampos(TextInputControl ... inputs){
+        for (TextInputControl tic : inputs){
+            tic.setText("");
+        }
+    }
+
+    private ObservableList getProdutos(){
+        ProdutoRepository pr = new ProdutoRepositoryImp();
+        return FXCollections.observableArrayList(pr.buscarTodos());
+    }
     private FXMLLoader getLoader(String file) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + file));
         return loader;

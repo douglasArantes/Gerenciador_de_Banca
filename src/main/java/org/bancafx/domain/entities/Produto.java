@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 @Entity
 @NamedQuery(name = Produto.TODOS_PRODUTOS, query = "select p from Produto p")
-@Data @EqualsAndHashCode
+@Data @EqualsAndHashCode @NoArgsConstructor
 @ToString @AllArgsConstructor
 public class Produto implements Serializable {
 
