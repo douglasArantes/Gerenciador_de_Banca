@@ -111,9 +111,18 @@ public class ProdutosController implements Initializable, IProdutosController{
     }
 
     @Override
-    public List<Produto> buscarProdutos() {
-        System.out.println("Pressionei: " + fieldPesquisar.getText());
-        return null;
+    public void buscarProdutos() {
+        ProdutoRepository pr = new ProdutoRepositoryImp();
+        String str = fieldPesquisar.getText();
+        if(str != null && !str.equals("")) {
+            List<Produto> filtrados = pr.buscarPorNome(str);
+            System.out.println(filtrados);
+            produtos.clear();
+            produtos.addAll(filtrados);
+            tableProdutos.getItems().setAll(produtos);
+        }else {
+            atualizaTabela();
+        }
     }
 
     @Override

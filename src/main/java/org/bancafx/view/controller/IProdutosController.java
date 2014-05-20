@@ -12,5 +12,5 @@ public interface IProdutosController {
     void novoProduto() throws IOException;
     void editarProduto();
     void excluirProduto();
-    List<Produto> buscarProdutos();
+    void buscarProdutos();
 }

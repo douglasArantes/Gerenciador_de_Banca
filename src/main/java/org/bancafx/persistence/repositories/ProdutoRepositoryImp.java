@@ -53,6 +53,19 @@ public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
     }
 
     @Override
+    public List<Produto> buscarPorNome(String nome) {
+        String jpql = "FROM Produto p WHERE p.nome LIKE :nome";
+
+        TypedQuery<Produto> query = JPAUtil.getEntityManager()
+                .createQuery(jpql, Produto.class)
+                .setParameter("nome", "%" + nome + "%");
+
+        List<Produto> produtos = query.getResultList();
+
+        return produtos;
+    }
+
+    @Override
     public void baixarEstoque(Produto p, Integer qtd) {
         //TODO implementar
     }
