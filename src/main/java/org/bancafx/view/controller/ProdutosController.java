@@ -76,10 +76,14 @@ public class ProdutosController implements Initializable, IProdutosController{
         stage.setScene(scene);
         stage.setTitle("Edição de Produto");
         stage.initModality(Modality.WINDOW_MODAL);
+        Produto produto = tableProdutos.getSelectionModel().getSelectedItem();
 
         EditarProdutoControlller controlller = loader.getController();
         controlller.setStage(stage);
+
+        controlller.setProduto(produto);
         stage.showAndWait();
+        atualizaTabela();
     }
 
     @Override
@@ -106,7 +110,6 @@ public class ProdutosController implements Initializable, IProdutosController{
 
     }
 
-
     @Override
     public List<Produto> buscarProdutos() {
         System.out.println("Pressionei: " + fieldPesquisar.getText());
@@ -124,7 +127,10 @@ public class ProdutosController implements Initializable, IProdutosController{
                 .addListener((observableValue, produto, selectedProd) -> {
                     mostraDetalhesProduto(selectedProd);
                 });
+        tableProdutos.getSelectionModel().selectFirst();
 
+        Produto p = tableProdutos.getSelectionModel().getSelectedItem();
+        mostraDetalhesProduto(p);
     }
 
     private void preparaTabela() {

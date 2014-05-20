@@ -24,19 +24,12 @@ public class CadastroProdutoController implements Initializable {
 
     private Stage dialogStage;
 
-    @FXML private Label labelCodigo;
     @FXML private TextField fieldCodigo;
-    @FXML private Label labelNome;
     @FXML private TextField fieldNome;
-    @FXML private Label labelPrecoDeCusto;
     @FXML private TextField fieldPrecoDeCusto;
-    @FXML private Label labelPrecoDeVenda;
     @FXML private TextField fieldPrecoDeVenda;
-    @FXML private Label labelQuantidade;
     @FXML private TextField fieldQuantidade;
-    @FXML private Label labelGenero;
     @FXML private ComboBox<GeneroProduto> comboGenero;
-    @FXML private Label labelObs;
     @FXML private TextArea areaObs;
 
 

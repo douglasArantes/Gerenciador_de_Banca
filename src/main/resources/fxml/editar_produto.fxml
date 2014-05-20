@@ -25,6 +25,12 @@
                         </Label>
                     </children>
                 </HBox>
+            <HBox spacing="54.0">
+               <children>
+                  <Label fx:id="labelCodigo" text="Código" />
+                  <TextField fx:id="fieldCodigo" editable="false" prefHeight="25.0" prefWidth="319.0" />
+               </children>
+            </HBox>
                 <HBox layoutX="12.0048828125" layoutY="122.0" spacing="60.0">
                     <children>
                         <Label fx:id="labelNome" layoutX="12.0048828125" layoutY="124.83332824707031" text="Nome" />
@@ -36,7 +42,7 @@
                 </HBox>
                 <HBox layoutX="12.0" layoutY="161.0">
                     <children>
-                        <Label fx:id="lablePrecoDeCusto" layoutX="12.0" layoutY="164.0" text="Preço de Custo">
+                        <Label fx:id="labelPrecoDeCusto" layoutX="12.0" layoutY="164.0" text="Preço de Custo">
                             <padding>
                                 <Insets right="10.0" />
                             </padding>
@@ -58,7 +64,7 @@
                             </padding>
                         </Label>
                         <TextField fx:id="fieldQuantidade" layoutX="101.0" layoutY="220.0" prefHeight="25.0" prefWidth="103.0" />
-                        <Label fx:id="fieldGenero" layoutX="222.0048828125" layoutY="223.5" text="Gênero">
+                        <Label fx:id="labelGenero" layoutX="222.0048828125" layoutY="223.5" text="Gênero">
                             <padding>
                                 <Insets left="16.0" right="10.0" />
                             </padding>
@@ -82,7 +88,7 @@
                 </VBox>
                 <HBox prefHeight="15.0" prefWidth="468.0">
                     <children>
-                        <Button fx:id="buttonCadastrar" layoutX="14.1875" layoutY="475.5" mnemonicParsing="false" text="Atualizar">
+                        <Button fx:id="buttonCadastrar" layoutX="14.1875" layoutY="475.5" mnemonicParsing="false" onAction="#atualizarProduto" text="Atualizar">
                             <HBox.margin>
                                 <Insets right="25.0" />
                             </HBox.margin>
