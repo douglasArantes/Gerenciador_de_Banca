@@ -4,6 +4,7 @@ import org.bancafx.domain.entities.GeneroProduto;
 import org.bancafx.domain.entities.Produto;
 import org.bancafx.utils.jpa.JPAUtil;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
@@ -13,50 +14,43 @@ import java.util.List;
 
 public class GeneroProdutoRepositoryImp implements GeneroProdutoRepository, Serializable {
 
+    private EntityManager em;
+
+    public GeneroProdutoRepositoryImp(){
+        em = JPAUtil.getEntityManager();
+    }
 
     @Override
     public void salvar(GeneroProduto gp) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager().persist(gp);
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.persist(gp);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void excluir(GeneroProduto gp) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager()
-                .remove(JPAUtil.getEntityManager()
-                        .getReference(GeneroProduto.class, gp.getId()));
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.getReference(GeneroProduto.class, gp.getId()));
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void editar(GeneroProduto gp) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager().merge(gp);
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.merge(gp);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public GeneroProduto buscarPorId(Integer id) {
-        return JPAUtil.getEntityManager().find(GeneroProduto.class, id);
+        return em.find(GeneroProduto.class, id);
     }
 
     @Override
     public List<GeneroProduto> buscarTodos() {
-        List<GeneroProduto> generoProdutos;
-
-        return generoProdutos = JPAUtil.getEntityManager()
-                .createNamedQuery(GeneroProduto.TODOS_GENEROS, GeneroProduto.class)
-                .getResultList();
+        return em.createNamedQuery(GeneroProduto.TODOS_GENEROS, GeneroProduto.class).getResultList();
     }
 }

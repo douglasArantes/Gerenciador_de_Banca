@@ -4,6 +4,7 @@ import org.bancafx.domain.entities.Compra;
 import org.bancafx.domain.entities.Venda;
 import org.bancafx.utils.jpa.JPAUtil;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -12,35 +13,32 @@ import java.util.List;
  * Created by Douglas on 07/05/2014.
  */
 public class CompraRepositoryImp implements CompraRepository, Serializable {
+
+    private EntityManager em;
+
+    public CompraRepositoryImp(){
+        em = JPAUtil.getEntityManager();
+    }
+
     @Override
     public void salvar(Compra c) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager().persist(c);
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.persist(c);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void excluir(Compra c) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager()
-                .remove(JPAUtil.getEntityManager()
-                        .getReference(Compra.class, c.getId()));
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.getReference(Compra.class, c.getId()));
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public List<Compra> buscarTodas() {
-        List<Compra> compras;
-
-        return compras = JPAUtil.getEntityManager()
-                .createNamedQuery(Compra.TODAS_COMPRAS, Compra.class)
-                .getResultList();
+        return em.createNamedQuery(Compra.TODAS_COMPRAS, Compra.class).getResultList();
     }
 
     @Override

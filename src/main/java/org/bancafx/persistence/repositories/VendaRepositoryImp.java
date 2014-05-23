@@ -5,6 +5,7 @@ import org.bancafx.domain.entities.Produto;
 import org.bancafx.domain.entities.Venda;
 import org.bancafx.utils.jpa.JPAUtil;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,34 +14,32 @@ import java.util.List;
  * Created by Douglas on 07/05/2014.
  */
 public class VendaRepositoryImp implements VendaRepository, Serializable {
+
+    private EntityManager em;
+
+    public VendaRepositoryImp(){
+        em = JPAUtil.getEntityManager();
+    }
+
     @Override
     public void salvar(Venda v) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager().persist(v);
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.persist(v);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void excluir(Venda v) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager()
-                .remove(JPAUtil.getEntityManager()
-                .getReference(Venda.class, v.getId()));
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.getReference(Venda.class, v.getId()));
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public List<Venda> buscarTodas() {
-        List<Venda> vendas;
-        return vendas = JPAUtil.getEntityManager()
-                .createNamedQuery(Venda.TODAS_VENDAS, Venda.class)
-                .getResultList();
+        return em.createNamedQuery(Venda.TODAS_VENDAS, Venda.class).getResultList();
     }
 
     @Override

@@ -3,6 +3,7 @@ package org.bancafx.persistence.repositories;
 import org.bancafx.domain.entities.Produto;
 import org.bancafx.utils.jpa.JPAUtil;
 
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
@@ -12,42 +13,38 @@ import java.util.List;
  */
 public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
 
+    private EntityManager em;
+
+    public ProdutoRepositoryImp(){
+        em = JPAUtil.getEntityManager();
+    }
+
     public void salvar(Produto p){
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager().persist(p);
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.persist(p);
+        em.getTransaction().commit();
+        em.close();
     }
 
     public void excluir(Produto p){
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager()
-                .remove(JPAUtil.getEntityManager()
-                        .getReference(Produto.class, p.getCodigo()));
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.getReference(Produto.class, p.getCodigo()));
+        em.getTransaction().commit();
+        em.close();
     }
 
     public void editar(Produto p){
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager().merge(p);
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.merge(p);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public Produto buscarPorCodigo(String codigo) {
         String jpql = "FROM Produto p WHERE p.codigo = :codigo";
 
-        TypedQuery<Produto> query = JPAUtil.getEntityManager()
-                .createQuery(jpql, Produto.class)
-                .setParameter("codigo", codigo);
+        TypedQuery<Produto> query = em.createQuery(jpql, Produto.class).setParameter("codigo", codigo);
 
         return query.getSingleResult();
     }
@@ -56,25 +53,18 @@ public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
     public List<Produto> buscarPorNome(String nome) {
         String jpql = "FROM Produto p WHERE p.nome LIKE :nome";
 
-        TypedQuery<Produto> query = JPAUtil.getEntityManager()
-                .createQuery(jpql, Produto.class)
-                .setParameter("nome", "%" + nome + "%");
+        TypedQuery<Produto> query = em.createQuery(jpql, Produto.class).setParameter("nome", "%" + nome + "%");
 
-        List<Produto> produtos = query.getResultList();
+        return query.getResultList();
+    }
+    @Override
+    public List<Produto> buscarTodos() {
 
-        return produtos;
+        return em.createNamedQuery(Produto.TODOS_PRODUTOS, Produto.class).getResultList();
     }
 
     @Override
     public void baixarEstoque(Produto p, Integer qtd) {
         //TODO implementar
-    }
-
-    @Override
-    public List<Produto> buscarTodos() {
-        List<Produto> produtos;
-        return produtos = JPAUtil.getEntityManager()
-                .createNamedQuery(Produto.TODOS_PRODUTOS, Produto.class)
-                .getResultList();
     }
 }

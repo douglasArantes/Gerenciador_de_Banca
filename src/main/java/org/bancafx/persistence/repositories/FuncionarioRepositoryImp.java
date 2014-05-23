@@ -5,6 +5,7 @@ import org.bancafx.domain.entities.Produto;
 import org.bancafx.utils.jpa.JPAUtil;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,50 +13,45 @@ import java.util.List;
  * Created by Douglas on 07/05/2014.
  */
 public class FuncionarioRepositoryImp implements FuncionarioRepository, Serializable{
+
+    private EntityManager em;
+
+    public FuncionarioRepositoryImp(){
+        em = JPAUtil.getEntityManager();
+    }
+
     @Override
     public void salvar(Funcionario f) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager().persist(f);
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.persist(f);
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void excluir(Funcionario f) {
-        JPAUtil.getEntityManager().getTransaction().begin();
-
-        JPAUtil.getEntityManager()
-                .remove(JPAUtil.getEntityManager()
-                        .getReference(Funcionario.class, f.getCpf()));
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.getReference(Funcionario.class, f.getCpf()));
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void editar(Funcionario f) {
-        JPAUtil.getEntityManager().getTransaction().begin();
+        em.getTransaction().begin();
+        em.merge(f);
+        em.getTransaction().commit();
+        em.close();
+    }
 
-        JPAUtil.getEntityManager().merge(f);
-
-        JPAUtil.getEntityManager().getTransaction().commit();
-        JPAUtil.closeEntityManager();
+    @Override
+    public List<Funcionario> buscarTodos() {
+        return em.createNamedQuery(Funcionario.TODOS_FUNCIONARIOS, Funcionario.class).getResultList();
     }
 
     @Override
     public Funcionario buscarPorCPF(CPF cnpj) {
         //TODO implementar
         return null;
-    }
-
-    @Override
-    public List<Funcionario> buscarTodos() {
-        List<Funcionario> funcionarios;
-
-        return JPAUtil.getEntityManager()
-                .createNamedQuery(Funcionario.TODOS_FUNCIONARIOS, Funcionario.class)
-                .getResultList();
     }
 }
