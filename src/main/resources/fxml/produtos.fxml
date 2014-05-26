@@ -7,120 +7,135 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="709.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bancafx.view.controller.ProdutosController">
+<AnchorPane prefHeight="709.0" prefWidth="1334.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.bancafx.view.controller.ProdutosController">
 
     <children>
-        <TableView fx:id="tableProdutos" editable="true" layoutX="14.0" layoutY="62.0" prefHeight="570.0" prefWidth="839.0" tableMenuButtonVisible="true">
+        <TableView fx:id="tableProdutos" editable="true" layoutX="14.0" layoutY="62.0" prefHeight="570.0"
+                   prefWidth="839.0" tableMenuButtonVisible="true">
             <columns>
-                <TableColumn fx:id="columnCodigo" prefWidth="127.00000762939453" text="Código" />
-                <TableColumn fx:id="columnNome" prefWidth="350.0" text="Nome" />
-                <TableColumn fx:id="columnQuantidade" prefWidth="107.66668701171875" text="Quantidade" />
-                <TableColumn fx:id="columnPCusto" prefWidth="125.0" text="Preço de Custo" />
-                <TableColumn fx:id="columnPVenda" prefWidth="125.0" text="Preço de Venda" />
+                <TableColumn fx:id="columnCodigo" prefWidth="127.00000762939453" text="Código"/>
+                <TableColumn fx:id="columnNome" prefWidth="350.0" text="Nome"/>
+                <TableColumn fx:id="columnQuantidade" prefWidth="107.66668701171875" text="Quantidade"/>
+                <TableColumn fx:id="columnPCusto" prefWidth="125.0" text="Preço de Custo"/>
+                <TableColumn fx:id="columnPVenda" prefWidth="125.0" text="Preço de Venda"/>
             </columns>
         </TableView>
-        <HBox layoutX="32.67155075073242" layoutY="20.0" prefHeight="25.0" prefWidth="392.0" spacing="10.0" AnchorPane.leftAnchor="15.0">
+        <HBox layoutX="32.67155075073242" layoutY="20.0" prefHeight="25.0" prefWidth="392.0" spacing="10.0"
+              AnchorPane.leftAnchor="15.0">
             <children>
                 <Label fx:id="labelPesquisar" layoutX="32.67155075073242" layoutY="22.83333396911621" text="Pesquisar">
                     <HBox.margin>
-                        <Insets />
+                        <Insets/>
                     </HBox.margin>
                 </Label>
-                <TextField fx:id="fieldPesquisar" layoutX="106.0" layoutY="20.0" onKeyReleased="#buscarProdutos" prefHeight="25.0" prefWidth="328.0" />
+                <TextField fx:id="fieldPesquisar" layoutX="106.0" layoutY="20.0" onKeyReleased="#buscarProdutos"
+                           prefHeight="25.0" prefWidth="328.0"/>
             </children>
         </HBox>
         <HBox layoutX="714.1875" layoutY="18.833332061767578" spacing="15.0" AnchorPane.rightAnchor="50.0">
             <children>
-                <Button fx:id="btnNovo" layoutX="724.1875" layoutY="18.833332061767578" mnemonicParsing="false" onAction="#novoProduto" text="Novo" />
-                <Button fx:id="btnEditar" layoutX="841.5208282470703" layoutY="18.833332061767578" mnemonicParsing="false" onAction="#editarProduto" text="Editar" />
-                <Button fx:id="btnExcluir" layoutX="936.1875" layoutY="18.833332061767578" mnemonicParsing="false" onAction="#excluirProduto" text="Excluir" />
+                <Button fx:id="btnNovo" layoutX="724.1875" layoutY="18.833332061767578" mnemonicParsing="false"
+                        onAction="#novoProduto" text="Novo"/>
+                <Button fx:id="btnEditar" layoutX="841.5208282470703" layoutY="18.833332061767578"
+                        mnemonicParsing="false" onAction="#editarProduto" text="Editar"/>
+                <Button fx:id="btnExcluir" layoutX="936.1875" layoutY="18.833332061767578" mnemonicParsing="false"
+                        onAction="#excluirProduto" text="Excluir"/>
             </children>
         </HBox>
-          <HBox layoutX="894.0" layoutY="69.0">
-              <children>
-                  <ImageView fitHeight="64.0" fitWidth="62.0" layoutX="695.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../images/produto.png" />
-                      </image>
-                  </ImageView>
-                  <Text fill="#6f6e6e" layoutX="757.0" layoutY="114.8984375" strokeType="OUTSIDE" strokeWidth="0.0" text="Detalhes do Produto" underline="true">
-                      <font>
-                          <Font size="24.0" />
-                      </font>
-                      <HBox.margin>
-                          <Insets top="20.0" />
-                      </HBox.margin>
-                  </Text>
-              </children>
-          </HBox>
-      <VBox layoutX="894.0" layoutY="147.0" spacing="20.0">
-         <children>
-            <HBox layoutX="894.0" layoutY="147.0" spacing="52.0">
-               <children>
-                  <Label fx:id="labelCodigo" layoutX="894.0" layoutY="151.0" text="Código" />
-                  <TextField fx:id="fieldCodigo" editable="false" layoutX="985.0" layoutY="147.0" prefHeight="25.0" prefWidth="319.0">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
+        <HBox layoutX="894.0" layoutY="69.0">
+            <children>
+                <ImageView fitHeight="64.0" fitWidth="62.0" layoutX="695.0" layoutY="69.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../images/produto.png"/>
+                    </image>
+                </ImageView>
+                <Text fill="#6f6e6e" layoutX="757.0" layoutY="114.8984375" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Detalhes do Produto" underline="true">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets top="20.0"/>
+                    </HBox.margin>
+                </Text>
+            </children>
+        </HBox>
+        <VBox layoutX="894.0" layoutY="147.0" spacing="20.0">
+            <children>
+                <HBox layoutX="894.0" layoutY="147.0" spacing="52.0">
+                    <children>
+                        <Label fx:id="labelCodigo" layoutX="894.0" layoutY="151.0" text="Código"/>
+                        <TextField fx:id="fieldCodigo" editable="false" layoutX="985.0" layoutY="147.0"
+                                   prefHeight="25.0" prefWidth="319.0">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
                 <HBox layoutX="894.0" layoutY="201.0" spacing="60.0">
                     <children>
-                        <Label fx:id="labelNome" layoutX="12.0048828125" layoutY="124.83332824707031" text="Nome" />
-                        <TextField fx:id="fieldNome" editable="false" layoutX="110.0" layoutY="122.0" prefHeight="25.0" prefWidth="319.0" />
+                        <Label fx:id="labelNome" layoutX="12.0048828125" layoutY="124.83332824707031" text="Nome"/>
+                        <TextField fx:id="fieldNome" editable="false" layoutX="110.0" layoutY="122.0" prefHeight="25.0"
+                                   prefWidth="319.0"/>
                     </children>
                     <opaqueInsets>
-                        <Insets />
+                        <Insets/>
                     </opaqueInsets>
                 </HBox>
                 <HBox layoutX="894.0" layoutY="246.0">
                     <children>
                         <Label fx:id="labelPCusto" layoutX="12.0" layoutY="164.0" text="Preço de Custo">
                             <padding>
-                                <Insets right="10.0" />
+                                <Insets right="10.0"/>
                             </padding>
                         </Label>
-                        <TextField fx:id="fieldPCusto" editable="false" layoutX="108.0" layoutY="161.0" prefHeight="25.0" prefWidth="103.0" />
+                        <TextField fx:id="fieldPCusto" editable="false" layoutX="108.0" layoutY="161.0"
+                                   prefHeight="25.0" prefWidth="103.0"/>
                         <Label fx:id="labelPVenda" layoutX="232.0" layoutY="164.0" text="Preço de Venda">
                             <padding>
-                                <Insets left="15.0" right="10.0" />
+                                <Insets left="15.0" right="10.0"/>
                             </padding>
                         </Label>
-                        <TextField fx:id="fieldPVenda" editable="false" layoutX="328.0" layoutY="161.0" prefHeight="25.0" prefWidth="110.0" />
+                        <TextField fx:id="fieldPVenda" editable="false" layoutX="328.0" layoutY="161.0"
+                                   prefHeight="25.0" prefWidth="110.0"/>
                     </children>
                 </HBox>
                 <HBox layoutX="894.0" layoutY="301.0" prefHeight="25.0" prefWidth="412.0">
                     <children>
                         <Label fx:id="labelQuantidade" layoutX="12.0048828125" layoutY="223.5" text="Quantidade">
                             <padding>
-                                <Insets right="28.0" />
+                                <Insets right="28.0"/>
                             </padding>
                         </Label>
-                        <TextField fx:id="fieldQuantidade" editable="false" layoutX="101.0" layoutY="220.0" prefHeight="25.0" prefWidth="103.0" />
+                        <TextField fx:id="fieldQuantidade" editable="false" layoutX="101.0" layoutY="220.0"
+                                   prefHeight="25.0" prefWidth="103.0"/>
                         <Label fx:id="labelGenero" layoutX="222.0048828125" layoutY="223.5" text="Gênero">
                             <padding>
-                                <Insets left="16.0" right="10.0" />
+                                <Insets left="16.0" right="10.0"/>
                             </padding>
                         </Label>
-                        <TextField fx:id="fieldGenero" editable="false" prefHeight="25.0" prefWidth="156.0" />
+                        <TextField fx:id="fieldGenero" editable="false" prefHeight="25.0" prefWidth="156.0"/>
                     </children>
                 </HBox>
-            <VBox layoutX="894.0" layoutY="346.0">
-               <children>
+                <VBox layoutX="894.0" layoutY="346.0">
+                    <children>
                         <Label fx:id="labelObs" layoutX="894.0" layoutY="346.0" text="Observações">
                             <padding>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="10.0"/>
                             </padding>
                         </Label>
-                        <TextArea fx:id="tAreaObs" editable="false" layoutX="894.0" layoutY="383.0" prefHeight="124.0" prefWidth="416.0">
+                        <TextArea fx:id="tAreaObs" editable="false" layoutX="894.0" layoutY="383.0" prefHeight="124.0"
+                                  prefWidth="416.0">
                             <VBox.margin>
-                                <Insets right="25.0" />
+                                <Insets right="25.0"/>
                             </VBox.margin>
                         </TextArea>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

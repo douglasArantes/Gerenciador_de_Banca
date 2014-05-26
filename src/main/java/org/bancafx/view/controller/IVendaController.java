@@ -12,6 +12,6 @@ public interface IVendaController {
     void finalizar();
     void removerItem(List<ItemVenda> itens);
     void removerTodosItens();
-    void buscarItem();
-    void adiconarItem(ItemVenda item);
+    void mostraTotal();
+    void calcularTroco();
 }

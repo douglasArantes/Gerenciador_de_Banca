@@ -9,6 +9,8 @@ import java.io.Serializable;
  * Created by Douglas on 09/04/2014.
  */
 
+//TODO Modificar para @Embeddable
+
 @Entity
 @Data
 @NoArgsConstructor

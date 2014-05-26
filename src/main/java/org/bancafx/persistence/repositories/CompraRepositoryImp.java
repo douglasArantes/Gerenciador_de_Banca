@@ -1,7 +1,6 @@
 package org.bancafx.persistence.repositories;
 
 import org.bancafx.domain.entities.Compra;
-import org.bancafx.domain.entities.Venda;
 import org.bancafx.utils.jpa.JPAUtil;
 
 import javax.persistence.EntityManager;

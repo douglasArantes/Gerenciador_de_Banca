@@ -10,6 +10,9 @@ import java.io.Serializable;
 /**
  * Created by Douglas on 09/04/2014.
  */
+
+//TODO Eliminar
+
 @Embeddable
 @EqualsAndHashCode @ToString
 public class Nome implements Serializable{

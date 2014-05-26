@@ -16,6 +16,8 @@ import java.time.LocalDate;
  * Created by Douglas on 09/04/2014.
  */
 
+//TODO Remover Nome, e adicionar String razaoSocial
+
 @Entity
 @NamedQuery(name = Funcionario.TODOS_FUNCIONARIOS, query = "select f from Funcionario f")
 @Data

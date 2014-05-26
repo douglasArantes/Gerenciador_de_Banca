@@ -27,7 +27,7 @@
                         <Insets left="10.0" />
                     </HBox.margin>
                 </TextField>
-                <Button fx:id="buttonPesquisar" layoutX="341.0208435058594" layoutY="26.0" mnemonicParsing="false" onAction="#buscarItem" text="Pesquisar">
+                <Button fx:id="buttonPesquisar" layoutX="341.0208435058594" layoutY="26.0" mnemonicParsing="false" onAction="#novoItemForm" text="Pesquisar">
                     <HBox.margin>
                         <Insets left="10.0" />
                     </HBox.margin>
@@ -85,7 +85,7 @@
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <TextField fx:id="fieldValorRecebido" layoutX="706.0" layoutY="140.0">
+                <TextField fx:id="fieldValorRecebido" layoutX="706.0" layoutY="140.0" onMouseExited="#calcularTroco">
                     <HBox.margin>
                         <Insets left="25.0" />
                     </HBox.margin>
@@ -119,11 +119,11 @@
                 </Button>
             </children>
         </HBox>
-      <HBox layoutX="15.0" layoutY="569.0" spacing="15.0">
-         <children>
-            <Button layoutX="15.0" layoutY="659.0" mnemonicParsing="false" text="Excluir" />
-            <Button layoutX="85.0" layoutY="659.0" mnemonicParsing="false" text="Excluir Todos" />
-         </children>
-      </HBox>
+        <HBox layoutX="15.0" layoutY="569.0" spacing="15.0">
+            <children>
+                <Button layoutX="15.0" layoutY="659.0" mnemonicParsing="false" text="Excluir" />
+                <Button layoutX="85.0" layoutY="659.0" mnemonicParsing="false" text="Excluir Todos" />
+            </children>
+        </HBox>
     </children>
 </AnchorPane>
