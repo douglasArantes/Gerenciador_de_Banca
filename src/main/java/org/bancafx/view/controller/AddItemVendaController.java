@@ -37,12 +37,13 @@ public class AddItemVendaController implements Initializable{
     }
 
     public void novoItemVenda(){
-        Integer qtd = new Integer(fieldQtdVendaProduto.getText());
+        Integer qtdVenda = new Integer(fieldQtdVendaProduto.getText());
         BigDecimal valor = new BigDecimal(fieldPrecoProduto.getText());
 
-        itemVenda = new ItemVenda(produto, qtd, valor);
-
-        VendaController.getVenda().adicionarItem(itemVenda);
+        if(qtdVenda <= produto.getQuantidadeEmEstoque()) {
+            itemVenda = new ItemVenda(produto, qtdVenda, valor, VendaController.getVenda() );
+            VendaController.getVenda().adicionarItem(itemVenda);
+        }
         close();
     }
 

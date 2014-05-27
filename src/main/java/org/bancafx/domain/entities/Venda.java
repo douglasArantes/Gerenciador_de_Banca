@@ -44,15 +44,15 @@ public class Venda implements Serializable{
 
     public Venda(){
         itens = new ArrayList<>();
-        momentoDaVenda.now();
+        momentoDaVenda = momentoDaVenda.now();
     }
 
     public BigDecimal getTotalDaVenda(){
-        final BigDecimal valorTotal;
 
-        return valorTotal = itens.stream()
+        return totalDaVenda = itens.stream()
                 .map(i -> i.getTotal())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+
     }
 
     public void adicionarItem(ItemVenda item){

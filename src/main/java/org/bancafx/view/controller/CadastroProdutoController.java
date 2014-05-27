@@ -47,9 +47,7 @@ public class CadastroProdutoController implements Initializable {
         return  produto;
     }
 
-
     public void cadastrarProduto() {
-        System.err.println("cadastro");
         Produto produto = getValores();
         System.out.println(produto);
         ProdutoRepository pr = new ProdutoRepositoryImp();
@@ -77,7 +75,6 @@ public class CadastroProdutoController implements Initializable {
         GeneroProdutoRepository gpr = new GeneroProdutoRepositoryImp();
         List<GeneroProduto> generos =  gpr.buscarTodos();
         comboGenero.getItems().addAll(generos);
-
         comboGenero.converterProperty().setValue(fxc.getGeneroCoverter());
     }
 

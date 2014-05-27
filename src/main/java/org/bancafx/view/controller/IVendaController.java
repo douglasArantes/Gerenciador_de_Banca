@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface IVendaController {
 
-    void finalizar();
-    void removerItem(List<ItemVenda> itens);
+    void finalizar() throws Exception;
+    void removerItem();
     void removerTodosItens();
     void mostraTotal();
     void calcularTroco();

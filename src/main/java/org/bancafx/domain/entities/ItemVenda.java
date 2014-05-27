@@ -40,9 +40,10 @@ public class ItemVenda implements Serializable{
         return  produto.getPrecoDeVenda().multiply(qtd);
     }
 
-    public ItemVenda(Produto p, Integer qtd, BigDecimal val){
+    public ItemVenda(Produto p, Integer qtd, BigDecimal val, Venda venda){
         this.produto = p;
         this.quantidade = qtd;
         this.valor = val;
+        this.venda = venda;
     }
 }

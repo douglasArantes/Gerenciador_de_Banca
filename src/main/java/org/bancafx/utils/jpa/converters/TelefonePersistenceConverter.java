@@ -16,7 +16,7 @@ public class TelefonePersistenceConverter implements AttributeConverter<Telefone
     @Override
     public Telefone convertToEntityAttribute(String telefone) {
         String ddd = telefone.substring(0, 2);
-        String numero = telefone.substring(2, 10);
+        String numero = telefone.substring(2, 11);
 
         return new Telefone(ddd, numero);
     }

@@ -13,7 +13,8 @@ import java.io.Serializable;
  */
 @Entity
 @NamedQuery(name = Fornecedor.TODOS_FORNECEDORES, query = "select f from Fornecedor f")
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode @ToString
 public class Fornecedor implements Serializable {
 
@@ -23,8 +24,8 @@ public class Fornecedor implements Serializable {
     @Column(name = "cnpj", unique = true)
     private String Cnpj;
 
-    @Embedded
-    private Nome nome;
+    @Column(name = "razao_social")
+    private String razaoSocial;
 
     @Column(unique = true)
     @Email
@@ -38,7 +39,7 @@ public class Fornecedor implements Serializable {
     @Column(name = "tel_celular")
     private Telefone celular;
 
-    @OneToOne
+    @Embedded
     @Basic(fetch = FetchType.LAZY)
     private Endereco endereco;
 }

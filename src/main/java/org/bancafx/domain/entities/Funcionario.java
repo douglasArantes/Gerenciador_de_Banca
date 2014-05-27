@@ -31,8 +31,11 @@ public class Funcionario implements Serializable{
     @org.hibernate.validator.constraints.br.CPF
     private String Cpf;
 
-    @Embedded @NotNull
-    private Nome nome;
+    @Column(name = "primeiro_nome")
+    private String primeiroNome;
+
+    @Column(name = "ultimo_nome")
+    private String ultimoNome;
 
     @Column(unique = true)
     @NotNull
@@ -45,7 +48,7 @@ public class Funcionario implements Serializable{
     @Convert(converter = TelefonePersistenceConverter.class)
     private Telefone telefone;
 
-    @OneToOne
+    @Embedded
     @Basic(fetch = FetchType.LAZY)
     private Endereco endereco;
 

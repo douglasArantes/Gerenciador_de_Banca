@@ -45,7 +45,7 @@ public class Produto implements Serializable {
     private GeneroProduto genero;
 
     public void baixarEstoque(Integer quantidade) throws Exception {
-        if(quantidadeEmEstoque <=quantidade){
+        if(quantidadeEmEstoque >= quantidade){
             quantidadeEmEstoque -= quantidade;
         }
         else {

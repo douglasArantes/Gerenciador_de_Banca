@@ -20,6 +20,8 @@ import org.bancafx.domain.entities.Venda;
 import org.bancafx.persistence.repositories.ProdutoRepository;
 import org.bancafx.persistence.repositories.ProdutoRepositoryImp;
 import org.bancafx.persistence.repositories.VendaRepository;
+import org.bancafx.persistence.repositories.VendaRepositoryImp;
+import org.bancafx.utils.jpa.JPAUtil;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -55,7 +57,6 @@ public class VendaController implements Initializable, IVendaController {
         itensDaVenda = FXCollections.observableArrayList(venda.getItens());
     }
 
-
     public void novoItemForm() {
         pr = new ProdutoRepositoryImp();
         String codigo = fieldCodigo.getText();
@@ -77,7 +78,6 @@ public class VendaController implements Initializable, IVendaController {
             stage.showAndWait();
             atualizaTabela();
             mostraTotal();
-            System.err.println(venda.getItens());
         }
         fieldCodigo.setText("");
     }
@@ -117,12 +117,36 @@ public class VendaController implements Initializable, IVendaController {
     }
 
     @Override
-    public void finalizar() {
+    public void finalizar(){
+        List<ItemVenda> itens =  venda.getItens();
+
+        for (ItemVenda item : itens){
+            pr = new ProdutoRepositoryImp();
+            Produto prod = item.getProduto();
+            try {
+                prod.baixarEstoque(item.getQuantidade());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            pr.editar(prod);
+        }
+
+        salvarVenda(venda);
+
+        venda = null;
+        itensDaVenda = FXCollections.observableArrayList();
+        tableVendas.getItems().setAll(itensDaVenda);
+
+    }
+
+    private void salvarVenda(Venda v){
+        vr = new VendaRepositoryImp();
+        vr.salvar(v);
+
     }
 
     @Override
-    public void removerItem(List<ItemVenda> itens) { // sem parametros
-
+    public void removerItem() {
     }
 
     @Override
@@ -137,12 +161,19 @@ public class VendaController implements Initializable, IVendaController {
 
     @Override
     public void calcularTroco() {
-        final BigDecimal total = new BigDecimal(fieldTotalVenda.getText());
-        final BigDecimal recebido = new BigDecimal(fieldValorRecebido.getText());
+        String str = fieldValorRecebido.getText();
+        if(!str.isEmpty()) {
+            final BigDecimal total = new BigDecimal(fieldTotalVenda.getText());
+            final BigDecimal recebido = new BigDecimal(str);
 
-        final BigDecimal troco = recebido.subtract(total);
+            final BigDecimal troco = recebido.subtract(total);
 
-        fieldTroco.setText(troco.toString());
+            if(troco.compareTo(BigDecimal.ZERO) >= 0) {
+                fieldTroco.setText(troco.toString());
+            }
+        }else {
+            fieldTroco.setText("");
+        }
     }
 
     private void atualizaTabela(){
@@ -167,8 +198,12 @@ public class VendaController implements Initializable, IVendaController {
 
     public static Venda getVenda(){
         if (venda == null){
-            return new Venda();
+            return venda = new Venda();
         }
         return venda;
+    }
+
+    public static VendaController getVendaController(){
+        return new VendaController();
     }
 }

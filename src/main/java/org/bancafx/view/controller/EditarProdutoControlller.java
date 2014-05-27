@@ -71,12 +71,6 @@ public class EditarProdutoControlller implements Initializable{
         return  produto;
     }
 
-    private void limpaCampos(TextInputControl... inputs){
-        for (TextInputControl tic : inputs){
-            tic.setText("estou nulo!");
-        }
-    }
-
     public void cancelar(){
         close();
     }
