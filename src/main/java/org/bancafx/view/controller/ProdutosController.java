@@ -131,6 +131,7 @@ public class ProdutosController implements Initializable, IProdutosController{
         atualizaTabela();
 
         tableProdutos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        tableProdutos.setPlaceholder(new Label("Nenhum produto foi encontrado!"));
 
         tableProdutos.getSelectionModel().selectedItemProperty()
                 .addListener((observableValue, produto, selectedProd) -> {

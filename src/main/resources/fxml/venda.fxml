@@ -121,8 +121,8 @@
         </HBox>
         <HBox layoutX="15.0" layoutY="569.0" spacing="15.0">
             <children>
-                <Button layoutX="15.0" layoutY="659.0" mnemonicParsing="false" text="Excluir" />
-                <Button layoutX="85.0" layoutY="659.0" mnemonicParsing="false" text="Excluir Todos" />
+                <Button layoutX="15.0" layoutY="659.0" mnemonicParsing="false" onAction="#removerItem" text="Excluir" />
+                <Button layoutX="85.0" layoutY="659.0" mnemonicParsing="false" onAction="#removerTodosItens" text="Excluir Todos" />
             </children>
         </HBox>
     </children>

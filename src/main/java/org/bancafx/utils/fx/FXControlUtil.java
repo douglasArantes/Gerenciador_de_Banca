@@ -7,7 +7,7 @@ import javafx.scene.control.TextInputControl;
  */
 public class FXControlUtil {
 
-    private static void limpaCampos(TextInputControl... inputs){
+    public static void limparCampos(TextInputControl... inputs){
         for (TextInputControl tic : inputs){
             tic.setText("");
         }

@@ -47,7 +47,6 @@ public class AddItemVendaController implements Initializable{
         close();
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

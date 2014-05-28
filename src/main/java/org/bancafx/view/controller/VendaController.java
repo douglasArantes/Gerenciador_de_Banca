@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,7 +22,7 @@ import org.bancafx.persistence.repositories.ProdutoRepository;
 import org.bancafx.persistence.repositories.ProdutoRepositoryImp;
 import org.bancafx.persistence.repositories.VendaRepository;
 import org.bancafx.persistence.repositories.VendaRepositoryImp;
-import org.bancafx.utils.jpa.JPAUtil;
+import org.bancafx.utils.fx.FXControlUtil;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -86,6 +87,8 @@ public class VendaController implements Initializable, IVendaController {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         preparaTabela();
         tableVendas.getItems().setAll(itensDaVenda);
+        tableVendas.setPlaceholder(new Label("Nenhum produto adicionado!"));
+
     }
 
     private void preparaTabela() {
@@ -118,6 +121,22 @@ public class VendaController implements Initializable, IVendaController {
 
     @Override
     public void finalizar(){
+        salvarItens();
+        salvarVenda(venda);
+
+        limparCampos();
+
+        venda = null;
+        itensDaVenda = FXCollections.observableArrayList();
+        tableVendas.getItems().setAll(itensDaVenda);
+
+    }
+
+    private void limparCampos() {
+        FXControlUtil.limparCampos(fieldTotalVenda, fieldValorRecebido, fieldTroco);
+    }
+
+    private void salvarItens() {
         List<ItemVenda> itens =  venda.getItens();
 
         for (ItemVenda item : itens){
@@ -130,13 +149,6 @@ public class VendaController implements Initializable, IVendaController {
             }
             pr.editar(prod);
         }
-
-        salvarVenda(venda);
-
-        venda = null;
-        itensDaVenda = FXCollections.observableArrayList();
-        tableVendas.getItems().setAll(itensDaVenda);
-
     }
 
     private void salvarVenda(Venda v){
@@ -147,11 +159,17 @@ public class VendaController implements Initializable, IVendaController {
 
     @Override
     public void removerItem() {
+        ItemVenda item = tableVendas.getSelectionModel().getSelectedItem();
+        venda.removerItem(item);
+        atualizaTabela();
+        mostraTotal();
     }
 
     @Override
     public void removerTodosItens() {
-
+        venda.removerTodosItens();
+        atualizaTabela();
+        mostraTotal();
     }
 
     @Override
@@ -203,7 +221,4 @@ public class VendaController implements Initializable, IVendaController {
         return venda;
     }
 
-    public static VendaController getVendaController(){
-        return new VendaController();
-    }
 }
