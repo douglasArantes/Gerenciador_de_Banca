@@ -121,15 +121,26 @@ public class VendaController implements Initializable, IVendaController {
 
     @Override
     public void finalizar(){
-        salvarItens();
-        salvarVenda(venda);
+        if(!venda.getItens().isEmpty()) {
+            salvarItens();
+            salvarVenda(venda);
 
-        limparCampos();
+            limparCampos();
 
-        venda = null;
+            venda = null;
+            itensDaVenda = FXCollections.observableArrayList();
+            tableVendas.getItems().setAll(itensDaVenda);
+        }
+
+    }
+
+    @Override
+    public void cancelar() {
+        venda.getItens().clear();
         itensDaVenda = FXCollections.observableArrayList();
-        tableVendas.getItems().setAll(itensDaVenda);
-
+        atualizaTabela();
+        limparCampos();
+        venda = null;
     }
 
     private void limparCampos() {
@@ -201,6 +212,14 @@ public class VendaController implements Initializable, IVendaController {
 
     }
 
+    public static Venda getVenda(){
+        if (venda == null){
+            return venda = new Venda();
+        }
+        return venda;
+    }
+
+
     private FXMLLoader getLoader(String file) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + file));
         return loader;
@@ -214,11 +233,5 @@ public class VendaController implements Initializable, IVendaController {
         }
     }
 
-    public static Venda getVenda(){
-        if (venda == null){
-            return venda = new Venda();
-        }
-        return venda;
-    }
 
 }

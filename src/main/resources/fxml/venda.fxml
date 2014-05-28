@@ -109,7 +109,7 @@
         <HBox layoutX="964.1875" layoutY="332.5">
             <children>
                 <Button fx:id="buttonConfirmar" defaultButton="true" layoutX="694.1875" layoutY="332.5" mnemonicParsing="false" onAction="#finalizar" text="CONFIRMAR" textFill="#0d0d0d" />
-                <Button fx:id="buttonCancelar" cancelButton="true" layoutX="805.0" layoutY="333.0" mnemonicParsing="false" text="CANCELAR" textFill="#0d0d0d">
+                <Button fx:id="buttonCancelar" cancelButton="true" layoutX="805.0" layoutY="333.0" mnemonicParsing="false" onAction="#cancelar" text="CANCELAR" textFill="#0d0d0d">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>

@@ -9,7 +9,8 @@ import java.util.List;
  */
 public interface IVendaController {
 
-    void finalizar() throws Exception;
+    void finalizar();
+    void cancelar();
     void removerItem();
     void removerTodosItens();
     void mostraTotal();

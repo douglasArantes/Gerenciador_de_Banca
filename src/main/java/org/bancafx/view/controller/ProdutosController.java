@@ -78,12 +78,14 @@ public class ProdutosController implements Initializable, IProdutosController{
         stage.initModality(Modality.WINDOW_MODAL);
         Produto produto = tableProdutos.getSelectionModel().getSelectedItem();
 
-        EditarProdutoControlller controlller = loader.getController();
-        controlller.setStage(stage);
+        if(produto != null) {
+            EditarProdutoControlller controlller = loader.getController();
+            controlller.setStage(stage);
 
-        controlller.setProduto(produto);
-        stage.showAndWait();
-        atualizaTabela();
+            controlller.setProduto(produto);
+            stage.showAndWait();
+            atualizaTabela();
+        }
     }
 
     @Override
