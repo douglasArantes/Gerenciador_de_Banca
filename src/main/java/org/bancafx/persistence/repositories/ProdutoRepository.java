@@ -14,6 +14,5 @@ public interface ProdutoRepository {
     void editar(Produto p);
     Produto buscarPorCodigo(String codigo);
     List<Produto> buscarPorNome(String nome);
-    void baixarEstoque(Produto p, Integer qtd);
     List<Produto> buscarTodos();
 }

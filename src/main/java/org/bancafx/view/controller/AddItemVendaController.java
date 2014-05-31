@@ -1,9 +1,12 @@
 package org.bancafx.view.controller;
 
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.bancafx.domain.entities.ItemVenda;
 import org.bancafx.domain.entities.Produto;
 
@@ -20,6 +23,7 @@ public class AddItemVendaController implements Initializable{
     @FXML private TextField fieldPrecoProduto;
     @FXML private TextField fieldQtdEstProduto;
     @FXML private TextField fieldQtdVendaProduto;
+    @FXML private Label labelMsg;
 
     private Stage stage;
     private Produto produto;
@@ -27,6 +31,7 @@ public class AddItemVendaController implements Initializable{
 
     public void setStage(Stage stage){
         this.stage = stage;
+        this.stage.initStyle(StageStyle.UTILITY);
     }
     public void setProduto(Produto produto){
         this.produto = produto;
@@ -43,8 +48,11 @@ public class AddItemVendaController implements Initializable{
         if(qtdVenda <= produto.getQuantidadeEmEstoque()) {
             itemVenda = new ItemVenda(produto, qtdVenda, valor, VendaController.getVenda() );
             VendaController.getVenda().adicionarItem(itemVenda);
+            close();
+        }else {
+            fieldQtdVendaProduto.setText("");
+            labelMsg.setText("Quantidade não disponível no estoque");
         }
-        close();
     }
 
     @Override

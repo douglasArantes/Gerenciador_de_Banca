@@ -50,7 +50,7 @@ public class FuncionarioRepositoryImp implements FuncionarioRepository, Serializ
     }
 
     @Override
-    public Funcionario buscarPorCPF(CPF cnpj) {
+    public Funcionario buscarPorCPF(String cpf) {
         //TODO implementar
         return null;
     }

@@ -1,7 +1,6 @@
 package org.bancafx.persistence.repositories;
 
 import org.bancafx.domain.entities.Funcionario;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.util.List;
 
@@ -13,6 +12,6 @@ public interface FuncionarioRepository {
     void salvar(Funcionario f);
     void excluir(Funcionario f);
     void editar(Funcionario f);
-    Funcionario buscarPorCPF(CPF cnpj);
+    Funcionario buscarPorCPF(String cpf);
     List<Funcionario> buscarTodos();
 }

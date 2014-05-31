@@ -39,7 +39,7 @@ public class VendaController implements Initializable, IVendaController {
     @FXML private TextField fieldTotalVenda;
     @FXML private TextField fieldValorRecebido;
     @FXML private TextField fieldTroco;
-
+    @FXML private Label labelMessage;
 
     @FXML private TableView<ItemVenda> tableVendas;
     @FXML private TableColumn<ItemVenda,String> columnCodigo;
@@ -59,6 +59,7 @@ public class VendaController implements Initializable, IVendaController {
     }
 
     public void novoItemForm() {
+        labelMessage.setText("");
         pr = new ProdutoRepositoryImp();
         String codigo = fieldCodigo.getText();
         Produto produto = pr.buscarPorCodigo(codigo);
@@ -79,7 +80,10 @@ public class VendaController implements Initializable, IVendaController {
             stage.showAndWait();
             atualizaTabela();
             mostraTotal();
+        }else {
+            labelMessage.setText("Produto não encontrado");
         }
+
         fieldCodigo.setText("");
     }
 
@@ -219,7 +223,6 @@ public class VendaController implements Initializable, IVendaController {
         return venda;
     }
 
-
     private FXMLLoader getLoader(String file) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + file));
         return loader;
@@ -232,6 +235,4 @@ public class VendaController implements Initializable, IVendaController {
             throw new RuntimeException(e);
         }
     }
-
-
 }

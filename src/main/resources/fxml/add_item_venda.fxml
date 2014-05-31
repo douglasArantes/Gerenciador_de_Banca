@@ -45,16 +45,21 @@
                 <TextField fx:id="fieldQtdEstProduto" editable="false" layoutX="318.0" layoutY="131.0" prefHeight="25.0" prefWidth="64.0" />
             </children>
         </HBox>
-        <HBox layoutX="21.0" layoutY="201.0">
-            <children>
-                <Label layoutX="21.0" layoutY="202.0" text="Quantidade venda">
+      <HBox layoutX="21.0" layoutY="201.0">
+         <children>
+                <Label layoutX="21.0" layoutY="201.0" text="Quantidade venda">
                     <HBox.margin>
                         <Insets right="10.0" />
                     </HBox.margin>
                 </Label>
-                <TextField fx:id="fieldQtdVendaProduto" layoutX="128.0" layoutY="201.0" prefHeight="25.0" prefWidth="101.0" />
-            </children>
-        </HBox>
+                <TextField fx:id="fieldQtdVendaProduto" layoutX="129.0" layoutY="201.0" prefHeight="25.0" prefWidth="62.0" />
+            <Label fx:id="labelMsg" layoutX="202.0" layoutY="205.0" prefHeight="17.0" prefWidth="217.0" textFill="#f20404">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
         <Button layoutX="14.0" layoutY="277.0" mnemonicParsing="false" onAction="#novoItemVenda" text="Adicionar" />
         <Button layoutX="104.0" layoutY="277.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
     </children>

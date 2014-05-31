@@ -4,6 +4,7 @@ import org.bancafx.domain.entities.Produto;
 import org.bancafx.utils.jpa.JPAUtil;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
@@ -46,7 +47,14 @@ public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
 
         TypedQuery<Produto> query = em.createQuery(jpql, Produto.class).setParameter("codigo", codigo);
 
-        return query.getSingleResult();
+        Produto p = null;
+
+        try {
+          p = query.getSingleResult();
+        }catch (NoResultException nre){
+            nre.getMessage();
+        }
+        return p;
     }
 
     @Override
@@ -61,10 +69,5 @@ public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
     public List<Produto> buscarTodos() {
 
         return em.createNamedQuery(Produto.TODOS_PRODUTOS, Produto.class).getResultList();
-    }
-
-    @Override
-    public void baixarEstoque(Produto p, Integer qtd) {
-        //TODO implementar
     }
 }
