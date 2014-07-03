@@ -5,6 +5,7 @@ import org.bancafx.utils.jpa.JPAUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
 import java.util.List;
@@ -29,7 +30,11 @@ public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
 
     public void excluir(Produto p){
         em.getTransaction().begin();
-        em.remove(em.getReference(Produto.class, p.getCodigo()));
+        try {
+            em.remove(em.getReference(Produto.class, p.getCodigo()));
+        }catch (RollbackException re){
+            throw new RuntimeException("Venda de produto já realizada");
+        }
         em.getTransaction().commit();
         em.close();
     }

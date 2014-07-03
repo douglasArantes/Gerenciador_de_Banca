@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane fx:id="splitPaneRelatorios" dividerPositions="0.25" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <Accordion fx:id="accordionRelatorios" layoutX="31.0" layoutY="63.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
+              <panes>
+                <TitledPane animated="false" prefWidth="200.0" text="Lucro nas vendas">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ListView layoutX="19.6" layoutY="109.6" prefHeight="508.0" prefWidth="239.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="100.0" />
+                              <HBox layoutX="6.0" layoutY="3.0" spacing="10.0">
+                                 <children>
+                                  <Button layoutX="6.0" layoutY="3.0" mnemonicParsing="false" text="Hoje" />
+                                    <Button layoutX="51.0" layoutY="3.0" mnemonicParsing="false" text="7 Dias" />
+                                    <Button layoutX="104.0" layoutY="3.0" mnemonicParsing="false" text="15 Dias" />
+                                    <Button layoutX="163.0" layoutY="3.0" mnemonicParsing="false" text="30 Dias" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="12.0" />
+                                 </padding>
+                              </HBox>
+                              <TextField layoutX="14.0" layoutY="61.0" prefHeight="25.0" prefWidth="237.0" promptText="Pesquisar" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+                <TitledPane animated="false" text="Total das vendas">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Button layoutX="99.0" layoutY="199.0" mnemonicParsing="false" text="Button" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+              </panes>
+            </Accordion>
+            <AnchorPane prefHeight="698.0" prefWidth="800.0" SplitPane.resizableWithParent="false">
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

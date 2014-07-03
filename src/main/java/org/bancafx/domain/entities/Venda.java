@@ -48,7 +48,6 @@ public class Venda implements Serializable{
     }
 
     public BigDecimal getTotalDaVenda(){
-
         return totalDaVenda = itens.stream()
                 .map(i -> i.getTotal())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
