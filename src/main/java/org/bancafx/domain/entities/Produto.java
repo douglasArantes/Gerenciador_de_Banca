@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Entity
 @NamedQuery(name = Produto.TODOS_PRODUTOS, query = "select p from Produto p")
 @Data @EqualsAndHashCode @NoArgsConstructor
-@ToString @AllArgsConstructor
+@AllArgsConstructor
 public class Produto implements Serializable {
 
     public static final String TODOS_PRODUTOS = "Produto.listarTodos";
@@ -51,5 +51,14 @@ public class Produto implements Serializable {
         else {
             throw new Exception("Quantidade pedida, não está disponível em estoque");
         }
+    }
+
+    public BigDecimal getLucro(){
+        return precoDeVenda.subtract(precoDeCusto);
+    }
+
+    @Override
+    public String toString(){
+        return this.nome;
     }
 }

@@ -48,7 +48,7 @@ public class Main extends Application {
         Tab estoque = getTabEstoque();
         Tab relatorio = getTabRelatorio();
 
-        tabs.getTabs().addAll(venda, estoque, pedido, relatorio);
+        tabs.getTabs().addAll(venda, estoque, relatorio, pedido);
         desabilitarFecharTabs(tabs);
 
         return tabs;
@@ -61,7 +61,6 @@ public class Main extends Application {
     private Tab getTabRelatorio() {
         Tab relatorio = new Tab("RELATÓRIOS");
         AnchorPane anchorRelatorio = (AnchorPane) loadFxml("relatorios.fxml");
-
         relatorio.setContent(anchorRelatorio);
         return relatorio;
     }

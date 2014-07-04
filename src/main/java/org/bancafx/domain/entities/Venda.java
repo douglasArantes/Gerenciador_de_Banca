@@ -53,6 +53,11 @@ public class Venda implements Serializable{
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
     }
+    public BigDecimal getLucroDaVenda(){
+        return itens.stream()
+                .map(i -> i.getLucroItemVenda())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
     public void adicionarItem(ItemVenda item){
         itens.add(item);

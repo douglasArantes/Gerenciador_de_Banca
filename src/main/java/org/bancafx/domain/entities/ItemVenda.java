@@ -46,4 +46,8 @@ public class ItemVenda implements Serializable{
         this.valor = val;
         this.venda = venda;
     }
+
+    public BigDecimal getLucroItemVenda(){
+        return produto.getLucro().multiply(new BigDecimal(quantidade));
+    }
 }
