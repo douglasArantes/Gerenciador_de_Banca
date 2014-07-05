@@ -51,10 +51,10 @@
                     <children>
                         <LineChart fx:id="lineChartLucroVenda" layoutX="77.0" layoutY="290.0" prefHeight="798.0" prefWidth="895.0" title="Gráfico de lucro nas vendas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <xAxis>
-                                <CategoryAxis label="Período" side="BOTTOM" />
+                                <CategoryAxis fx:id="periodoAxisX" label="Período" side="BOTTOM" />
                             </xAxis>
                             <yAxis>
-                                <NumberAxis label="Lucro" side="LEFT" />
+                                <NumberAxis fx:id="lucroAxisY" label="Lucro" side="LEFT" />
                             </yAxis>
                         </LineChart>
                     </children>

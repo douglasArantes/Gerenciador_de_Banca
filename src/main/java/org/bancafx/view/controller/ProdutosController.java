@@ -42,6 +42,7 @@ public class ProdutosController implements Initializable, IProdutosController{
     @FXML private TextArea tAreaObs;
 
     @FXML private TextField fieldPesquisar;
+    @FXML private Label labelMsg;
 
     private ObservableList<Produto> produtos;
 
@@ -51,6 +52,7 @@ public class ProdutosController implements Initializable, IProdutosController{
 
     @Override
     public void novoProduto(){
+        labelMsg.setText("");
         FXMLLoader loader = getLoader("cadastro_produto.fxml");
         AnchorPane pane = loadAnchorPane(loader);
 
@@ -68,6 +70,7 @@ public class ProdutosController implements Initializable, IProdutosController{
 
     @Override
     public void editarProduto(){
+        labelMsg.setText("");
         FXMLLoader loader = getLoader("editar_produto.fxml");
         AnchorPane pane = loadAnchorPane(loader);
 
@@ -92,7 +95,14 @@ public class ProdutosController implements Initializable, IProdutosController{
     public void excluirProduto(){
         ProdutoRepository pr = new ProdutoRepositoryImp();
         ObservableList<Produto> produtosSelecionados=  tableProdutos.getSelectionModel().getSelectedItems();
-        produtosSelecionados.forEach( p -> pr.excluir(p));
+        produtosSelecionados.forEach( p -> {
+            try {
+                pr.excluir(p);
+            }catch (RuntimeException re){
+                labelMsg.setText(re.getMessage());
+                //throw new RuntimeException();
+            }
+        });
         mostraDetalhesProduto(null);
         atualizaTabela();
     }
@@ -106,6 +116,8 @@ public class ProdutosController implements Initializable, IProdutosController{
             fieldQuantidade.setText(produto.getQuantidadeEmEstoque().toString());
             fieldGenero.setText(produto.getGenero().getGenero());
             tAreaObs.setText(produto.getDescricao());
+            labelMsg.setText("");
+
         } else{
             limpaCampos(fieldCodigo, fieldNome, fieldPCusto, fieldPVenda, fieldQuantidade, fieldGenero, tAreaObs);
         }

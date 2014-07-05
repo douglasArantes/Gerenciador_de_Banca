@@ -32,11 +32,13 @@ public class ProdutoRepositoryImp implements ProdutoRepository, Serializable{
         em.getTransaction().begin();
         try {
             em.remove(em.getReference(Produto.class, p.getCodigo()));
+            em.getTransaction().commit();
         }catch (RollbackException re){
             throw new RuntimeException("Venda de produto já realizada");
+        }finally {
+            em.close();
         }
-        em.getTransaction().commit();
-        em.close();
+
     }
 
     public void editar(Produto p){

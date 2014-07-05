@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.util.StringConverter;
 import org.bancafx.domain.entities.Produto;
 import org.bancafx.domain.entities.Venda;
 import org.bancafx.persistence.repositories.ProdutoRepository;
@@ -32,8 +34,9 @@ public class RelatorioController implements Initializable {
     @FXML private ListView<Produto> produtos;
     @FXML private LineChart<String, Number> lineChartLucroVenda;
 
-    private final CategoryAxis periodoAxisX;
-    private final NumberAxis lucroAxisY;
+    private CategoryAxis periodoAxisX;
+    private NumberAxis lucroAxisY;
+
     private XYChart.Series<String, Number> series;
     private ObservableList<Produto> produtosList;
     private List<Venda> vendas;
@@ -41,8 +44,10 @@ public class RelatorioController implements Initializable {
     public RelatorioController() {
         produtosList = FXCollections.observableArrayList();
         produtos = new ListView<>();
-        periodoAxisX = new CategoryAxis();
         lucroAxisY = new NumberAxis();
+        periodoAxisX  = new CategoryAxis();
+
+        lucroAxisY.setLabel("Lucro");
         series = new XYChart.Series<>();
         lineChartLucroVenda = new LineChart<>(periodoAxisX, lucroAxisY);
         buscarVendas();
