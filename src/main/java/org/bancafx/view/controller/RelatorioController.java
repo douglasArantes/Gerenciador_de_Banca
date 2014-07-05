@@ -68,60 +68,33 @@ public class RelatorioController implements Initializable {
     }
 
     private void preparaLineChart() {
-        gerarSeries();
-        lineChartLucroVenda.getData().add(series);
-        getDadosLucro().forEach(System.out::println);
-    }
-
-    private void gerarSeries() {
+        gerarNSeries(getDadosLucro().size());
         series.setName("lucros");
-
-        for (DadoLucro dado : getDadosLucro()) {
-            series.getData().add(new XYChart.Data<>(dado.getDataFormatada(), dado.getLucro()));
-        }
+        lineChartLucroVenda.getData().add(series);
     }
 
     public void gerarGrafifoDeLucros7Dias() {
         limpaGrafico();
         buscarVendas();
-
-        int size = getDadosLucro().size();
-        if (size > 7) {
-            List<DadoLucro> dados = getDadosLucro().stream().skip(size - 7).collect(toList());
-            for (DadoLucro dado : dados){
-                series.getData().add(new XYChart.Data<>(dado.getDataFormatada(), dado.getLucro()));
-            }
-        }else{
-            for (DadoLucro dado : getDadosLucro()){
-                series.getData().add(new XYChart.Data<>(dado.getDataFormatada(), dado.getLucro()));
-            }
-        }
+        gerarNSeries(7);
     }
 
     public void gerarGrafifoDeLucros15Dias() {
         limpaGrafico();
         buscarVendas();
-
-        int size = getDadosLucro().size();
-        if (size > 15) {
-            List<DadoLucro> dados = getDadosLucro().stream().skip(size - 15).collect(toList());
-            for (DadoLucro dado : dados){
-                series.getData().add(new XYChart.Data<>(dado.getDataFormatada(), dado.getLucro()));
-            }
-        }else{
-            for (DadoLucro dado : getDadosLucro()){
-                series.getData().add(new XYChart.Data<>(dado.getDataFormatada(), dado.getLucro()));
-            }
-        }
+        gerarNSeries(15);
     }
 
     public void gerarGrafifoDeLucrosMes() {
         limpaGrafico();
         buscarVendas();
+        gerarNSeries(30);
+    }
 
-        int size = getDadosLucro().size();
-        if (size > 30) {
-            List<DadoLucro> dados = getDadosLucro().stream().skip(size - 30).collect(toList());
+    private void gerarNSeries(int numeroDeSeries) {
+        final int size = getDadosLucro().size();
+        if (size > numeroDeSeries) {
+            List<DadoLucro> dados = getDadosLucro().stream().skip(size - numeroDeSeries).collect(toList());
             for (DadoLucro dado : dados){
                 series.getData().add(new XYChart.Data<>(dado.getDataFormatada(), dado.getLucro()));
             }
@@ -137,7 +110,7 @@ public class RelatorioController implements Initializable {
         lineChartLucroVenda = new LineChart<>(periodoAxisX, lucroAxisY);
     }
 
-    public static boolean mesmoDia(LocalDateTime ldt1, LocalDateTime ldt2) {
+    private static boolean mesmoDia(LocalDateTime ldt1, LocalDateTime ldt2) {
         return ldt1.getDayOfMonth() == ldt2.getDayOfMonth()
                 && ldt1.getMonth().equals(ldt2.getMonth())
                 && ldt1.getYear() == ldt2.getYear();
@@ -163,7 +136,7 @@ public class RelatorioController implements Initializable {
         return lucroPorDia;
     }
 
-    public DadoLucro constroiDadoLucroParaData(LocalDateTime data, List<Venda> vendas) {
+    private DadoLucro constroiDadoLucroParaData(LocalDateTime data, List<Venda> vendas) {
         BigDecimal lucro = vendas.stream()
                 .map(Venda::getLucroDaVenda)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

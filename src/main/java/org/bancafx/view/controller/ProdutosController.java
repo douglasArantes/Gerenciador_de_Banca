@@ -100,7 +100,6 @@ public class ProdutosController implements Initializable, IProdutosController{
                 pr.excluir(p);
             }catch (RuntimeException re){
                 labelMsg.setText(re.getMessage());
-                //throw new RuntimeException();
             }
         });
         mostraDetalhesProduto(null);
@@ -121,7 +120,6 @@ public class ProdutosController implements Initializable, IProdutosController{
         } else{
             limpaCampos(fieldCodigo, fieldNome, fieldPCusto, fieldPVenda, fieldQuantidade, fieldGenero, tAreaObs);
         }
-
     }
 
     @Override
@@ -130,7 +128,6 @@ public class ProdutosController implements Initializable, IProdutosController{
         String str = fieldPesquisar.getText();
         if(str != null && !str.equals("")) {
             List<Produto> filtrados = pr.buscarPorNome(str);
-            System.out.println(filtrados);
             produtos.clear();
             produtos.addAll(filtrados);
             tableProdutos.getItems().setAll(produtos);
