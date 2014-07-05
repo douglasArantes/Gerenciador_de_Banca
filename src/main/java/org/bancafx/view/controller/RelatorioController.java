@@ -28,12 +28,9 @@ import static java.util.stream.Collectors.*;
 
 public class RelatorioController implements Initializable {
 
-    @FXML
-    private TextField fieldPesquisar;
-    @FXML
-    private ListView<Produto> produtos;
-    @FXML
-    private LineChart<String, Number> lineChartLucroVenda;
+    @FXML private TextField fieldPesquisar;
+    @FXML private ListView<Produto> produtos;
+    @FXML private LineChart<String, Number> lineChartLucroVenda;
 
     private final CategoryAxis periodoAxisX;
     private final NumberAxis lucroAxisY;

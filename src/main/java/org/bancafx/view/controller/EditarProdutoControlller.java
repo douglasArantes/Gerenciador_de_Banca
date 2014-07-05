@@ -29,6 +29,8 @@ public class EditarProdutoControlller implements Initializable{
     @FXML private TextField fieldQuantidade;
     @FXML private ComboBox<GeneroProduto> comboGenero;
     @FXML private TextArea areaObs;
+    @FXML private Label labelMsg;
+
 
     private Produto produto;
 
@@ -53,22 +55,47 @@ public class EditarProdutoControlller implements Initializable{
 
     public void atualizarProduto() {
         ProdutoRepository pr = new ProdutoRepositoryImp();
-        pr.editar(getValores());
-        close();
+        Produto produto = getValores();
+        if(produto != null) {
+            pr.editar(produto);
+            close();
+        }
     }
 
     private Produto getValores(){
         String codigo = fieldCodigo.getText();
         String nome = fieldNome.getText();
         BigDecimal precoDeCusto = new BigDecimal(fieldPrecoDeCusto.getText());
-        BigDecimal precoDeVenda = new BigDecimal(fieldPrecoDeVenda.getText());
-        Integer quantidade = new Integer(fieldQuantidade.getText());
+
+        BigDecimal precoDeVenda = null;
+        if (fieldPrecoDeVenda.getText() != null && !fieldPrecoDeVenda.getText().isEmpty()) {
+            precoDeVenda = new BigDecimal(fieldPrecoDeVenda.getText());
+        }
+       // BigDecimal precoDeVenda = new BigDecimal(fieldPrecoDeVenda.getText());
+        Integer quantidade = null;
+        if (!fieldQuantidade.getText().isEmpty()) {
+            quantidade = new Integer(fieldQuantidade.getText());
+        }
+        //Integer quantidade = new Integer(fieldQuantidade.getText());
         GeneroProduto genero = comboGenero.getSelectionModel().getSelectedItem();
         String obs = areaObs.getText();
+
+        if(!camposPreenchidos(codigo, nome, precoDeCusto, precoDeVenda, quantidade, genero)){
+            labelMsg.setText("Preencha todos os campos");
+            return null;
+        }
+        if(!valoresPositivos(precoDeVenda, quantidade)){
+            labelMsg.setText("Os valores numéricos devem ser positivos");
+            return null;
+        }
 
         Produto produto = new Produto(codigo,nome, obs, precoDeCusto, precoDeVenda, quantidade, genero);
 
         return  produto;
+    }
+
+    private boolean valoresPositivos(BigDecimal precoDeVenda, Integer quantidade) {
+        return precoDeVenda.compareTo(BigDecimal.ZERO) >= 0 && (quantidade >= 0);
     }
 
     public void cancelar(){
@@ -88,5 +115,18 @@ public class EditarProdutoControlller implements Initializable{
 
     private void close(){
         dialogStage.close();
+    }
+
+    private boolean camposPreenchidos(String cod, String nome, BigDecimal pCusto, BigDecimal pVenda, Integer qtd, GeneroProduto gen) {
+        if(cod != null && !cod.isEmpty()
+                && nome != null && !nome.isEmpty()
+                && pCusto != null
+                && pVenda != null
+                && qtd != null
+                && gen != null){
+
+            return true;
+        }
+        return false;
     }
 }

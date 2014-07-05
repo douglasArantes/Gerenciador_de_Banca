@@ -59,6 +59,10 @@ public class CadastroProdutoController implements Initializable {
             labelMsg.setText("Preencha todos os campos");
             return null;
         }
+        if(!valoresPositivos(precoDeVenda, precoDeCusto, quantidade)){
+            labelMsg.setText("Os valores numéricos devem ser positivos");
+            return null;
+        }
 
         Produto produto = new Produto(codigo, nome, obs, precoDeCusto, precoDeVenda, quantidade, genero);
         return produto;
@@ -97,17 +101,23 @@ public class CadastroProdutoController implements Initializable {
         comboGenero.converterProperty().setValue(fxc.getGeneroCoverter());
     }
 
-    private boolean camposPreenchidos(String codigo, String nome, BigDecimal precoDeCusto, BigDecimal precoDeVenda, Integer quantidade, GeneroProduto genero) {
-        if(codigo != null && !codigo.isEmpty()
+    private boolean camposPreenchidos(String cod, String nome, BigDecimal pCusto, BigDecimal pVenda, Integer qtd, GeneroProduto gen) {
+        if(cod != null && !cod.isEmpty()
            && nome != null && !nome.isEmpty()
-           && precoDeCusto != null
-           && precoDeVenda != null
-           && quantidade != null
-           && genero != null){
+           && pCusto != null
+           && pVenda != null
+           && qtd != null
+           && gen != null){
 
             return true;
         }
         return false;
+    }
+
+    private boolean valoresPositivos(BigDecimal precoDeVenda, BigDecimal precoDeCusto, Integer quantidade) {
+        return precoDeVenda.compareTo(BigDecimal.ZERO) >= 0
+                && precoDeCusto.compareTo(BigDecimal.ZERO) >=0
+                && (quantidade >= 0);
     }
 
 }
