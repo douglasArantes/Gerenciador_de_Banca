@@ -2,7 +2,10 @@ package org.bancafx.view.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.bancafx.domain.entities.GeneroProduto;
 import org.bancafx.domain.entities.Produto;
@@ -31,28 +34,44 @@ public class CadastroProdutoController implements Initializable {
     @FXML private TextField fieldQuantidade;
     @FXML private ComboBox<GeneroProduto> comboGenero;
     @FXML private TextArea areaObs;
+    @FXML private Label labelMsg;
 
 
     private Produto getValores(){
         String codigo = fieldCodigo.getText();
         String nome = fieldNome.getText();
-        BigDecimal precoDeCusto = new BigDecimal(fieldPrecoDeCusto.getText());
-        BigDecimal precoDeVenda = new BigDecimal(fieldPrecoDeVenda.getText());
-        Integer quantidade = new Integer(fieldQuantidade.getText());
+        BigDecimal precoDeCusto = null;
+        if(fieldPrecoDeCusto.getText() != null && !fieldPrecoDeCusto.getText().isEmpty()) {
+            precoDeCusto = new BigDecimal(fieldPrecoDeCusto.getText());
+        }
+        BigDecimal precoDeVenda = null;
+        if (fieldPrecoDeVenda.getText() != null && !fieldPrecoDeVenda.getText().isEmpty()) {
+            precoDeVenda = new BigDecimal(fieldPrecoDeVenda.getText());
+        }
+        Integer quantidade = null;
+        if (!fieldQuantidade.getText().isEmpty()) {
+            quantidade = new Integer(fieldQuantidade.getText());
+        }
         GeneroProduto genero = comboGenero.getSelectionModel().getSelectedItem();
         String obs = areaObs.getText();
 
-        Produto produto = new Produto(codigo,nome, obs, precoDeCusto, precoDeVenda, quantidade, genero);
+        if(!camposPreenchidos(codigo, nome, precoDeCusto, precoDeVenda, quantidade, genero)){
+            labelMsg.setText("Preencha todos os campos");
+            return null;
+        }
 
-        return  produto;
+        Produto produto = new Produto(codigo, nome, obs, precoDeCusto, precoDeVenda, quantidade, genero);
+        return produto;
     }
+
 
     public void cadastrarProduto() {
         Produto produto = getValores();
-        System.out.println(produto);
-        ProdutoRepository pr = new ProdutoRepositoryImp();
-        pr.salvar(produto);
-        close();
+        if(produto != null) {
+            ProdutoRepository pr = new ProdutoRepositoryImp();
+            pr.salvar(produto);
+            close();
+        }
     }
 
     public void setStage(Stage stage){
@@ -78,4 +97,18 @@ public class CadastroProdutoController implements Initializable {
         comboGenero.converterProperty().setValue(fxc.getGeneroCoverter());
     }
 
+    private boolean camposPreenchidos(String codigo, String nome, BigDecimal precoDeCusto, BigDecimal precoDeVenda, Integer quantidade, GeneroProduto genero) {
+        if(codigo != null && !codigo.isEmpty()
+           && nome != null && !nome.isEmpty()
+           && precoDeCusto != null
+           && precoDeVenda != null
+           && quantidade != null
+           && genero != null){
+
+            return true;
+        }
+        return false;
+    }
+
 }
+

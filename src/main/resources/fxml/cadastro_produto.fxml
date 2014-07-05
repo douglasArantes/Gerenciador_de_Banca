@@ -94,6 +94,11 @@
                             </HBox.margin>
                         </Button>
                         <Button fx:id="buttonCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+                  <Label fx:id="labelMsg" textFill="#f21313">
+                     <padding>
+                        <Insets left="40.0" top="5.0" />
+                     </padding>
+                  </Label>
                     </children>
                     <VBox.margin>
                         <Insets top="10.0" />

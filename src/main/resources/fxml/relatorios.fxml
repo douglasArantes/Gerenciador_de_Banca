@@ -6,44 +6,28 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.bancafx.view.controller.RelatorioController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bancafx.view.controller.RelatorioController">
     <children>
-        <SplitPane fx:id="splitPaneRelatorios" dividerPositions="0.25" prefHeight="800.0" prefWidth="1200.0"
-                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                   AnchorPane.topAnchor="0.0">
+        <SplitPane fx:id="splitPaneRelatorios" dividerPositions="0.25" prefHeight="800.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <Accordion fx:id="accordionRelatorios" layoutX="31.0" layoutY="63.0" AnchorPane.bottomAnchor="0.0"
-                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-                           SplitPane.resizableWithParent="false">
+                <Accordion fx:id="accordionRelatorios" layoutX="31.0" layoutY="63.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" SplitPane.resizableWithParent="false">
                     <panes>
                         <TitledPane fx:id="lucroVendaPane" animated="false" prefWidth="200.0" text="Lucro nas vendas">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
-                                        <HBox layoutX="6.0" layoutY="3.0" spacing="10.0">
+                                        <HBox layoutX="16.0" layoutY="3.0" spacing="20.0">
                                             <children>
-                                                <Button fx:id="btnHoje" layoutX="6.0" layoutY="3.0"
-                                                        mnemonicParsing="false" onAction="#gerarGrafifoDeLucrosHoje"
-                                                        text="Hoje"/>
-                                                <Button fx:id="btn7Dias" layoutX="51.0" layoutY="3.0"
-                                                        mnemonicParsing="false" onAction="#gerarGrafifoDeLucros7Dias"
-                                                        text="7 Dias"/>
-                                                <Button fx:id="btn15Dias" layoutX="104.0" layoutY="3.0"
-                                                        mnemonicParsing="false" onAction="#gerarGrafifoDeLucros15Dias"
-                                                        text="15 Dias"/>
-                                                <Button fx:id="btn30Dias" layoutX="163.0" layoutY="3.0"
-                                                        mnemonicParsing="false" onAction="#gerarGrafifoDeLucrosMes"
-                                                        text="30 Dias"/>
+                                                <Button fx:id="btn7Dias" layoutX="51.0" layoutY="3.0" mnemonicParsing="false" onAction="#gerarGrafifoDeLucros7Dias" text="7 Dias" />
+                                                <Button fx:id="btn15Dias" layoutX="104.0" layoutY="3.0" mnemonicParsing="false" onAction="#gerarGrafifoDeLucros15Dias" text="15 Dias" />
+                                                <Button fx:id="btn30Dias" layoutX="163.0" layoutY="3.0" mnemonicParsing="false" onAction="#gerarGrafifoDeLucrosMes" text="30 Dias" />
                                             </children>
                                             <padding>
-                                                <Insets top="12.0"/>
+                                                <Insets top="12.0" />
                                             </padding>
                                         </HBox>
-                                        <TextField fx:id="fieldPesquisar" layoutX="13.0" layoutY="61.0"
-                                                   prefHeight="25.0" prefWidth="275.0" promptText="Pesquisar"/>
-                                        <ListView fx:id="produtos" layoutX="11.0" layoutY="98.0" prefHeight="470.0"
-                                                  prefWidth="274.0"/>
+                                        <TextField fx:id="fieldPesquisar" layoutX="13.0" layoutY="61.0" prefHeight="25.0" prefWidth="275.0" promptText="Pesquisar" />
+                                        <ListView fx:id="produtos" layoutX="11.0" layoutY="98.0" prefHeight="470.0" prefWidth="274.0" />
 
                                     </children>
                                 </AnchorPane>
@@ -53,7 +37,7 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                     <children>
-                                        <Button layoutX="99.0" layoutY="199.0" mnemonicParsing="false" text="Button"/>
+                                        <Button layoutX="99.0" layoutY="199.0" mnemonicParsing="false" text="Button" />
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -62,17 +46,15 @@
                 </Accordion>
                 <AnchorPane prefHeight="698.0" prefWidth="800.0" SplitPane.resizableWithParent="false">
                     <padding>
-                        <Insets bottom="20.0" top="20.0"/>
+                        <Insets bottom="20.0" top="20.0" />
                     </padding>
                     <children>
-                        <LineChart fx:id="lineChartLucroVenda" layoutX="77.0" layoutY="290.0" prefHeight="798.0"
-                                   prefWidth="895.0" title="Gráfico de lucro nas vendas" AnchorPane.bottomAnchor="0.0"
-                                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <LineChart fx:id="lineChartLucroVenda" layoutX="77.0" layoutY="290.0" prefHeight="798.0" prefWidth="895.0" title="Gráfico de lucro nas vendas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <xAxis>
-                                <CategoryAxis label="Período" side="BOTTOM"/>
+                                <CategoryAxis label="Período" side="BOTTOM" />
                             </xAxis>
                             <yAxis>
-                                <NumberAxis label="Lucro" side="LEFT"/>
+                                <NumberAxis label="Lucro" side="LEFT" />
                             </yAxis>
                         </LineChart>
                     </children>
